@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>无主题页</title>
+        <script src="./js/diversity.js"></script>
+        <style>
+            body, html {
+                height: 100%;
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            .container {
+                padding: 20px;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            .img {
+                display: none;
+                width: 300px;  
+                height: 400px;
+                position: relative;
+            }
+
+            .card-container {
+                position: relative;
+                display: flex;
+                -webkit-box-orient: vertical;
+                -moz-box-orient: vertical;
+                -o-box-orient: vertical;
+                -webkit-flex-direction: column;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                -webkit-box-align: center;
+                -moz-box-align: center;
+                -o-box-align: center;
+                -ms-flex-align: center;
+                -webkit-align-items: center;
+                align-items: center;
+                text-align: center;
+                -webkit-box-pack: center;
+                -moz-box-pack: center;
+                -o-box-pack: center;
+                -ms-flex-pack: center;
+                -webkit-justify-content: center;
+                justify-content: center;
+            }
+
+            .card-back {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+            }
+
+            .top {
+                position: absolute;
+                top: 30px;
+            }
+
+            .bottom {
+                position: absolute;
+                bottom: 25px;
+            }
+
+            .middle {
+                margin: 0 20px 0 20px;
+            }
+
+            .text {
+                font-size: 18px;
+                color: #428bca;
+            }
+
+            .btn {
+                display: inline-block;
+                color: #fff !important;
+                text-shadow: 0 -1px 0 rgba(0,0,0,0.25) !important;
+                background-image: none !important;
+                border: 5px solid #fff;
+                border-radius: 0;
+                -webkit-box-shadow: none !important;
+                box-shadow: none !important;
+                -webkit-transition: all ease 0.15s;
+                -webkit-transition: all ease 0.15s;
+                -moz-transition: all ease 0.15s;
+                -o-transition: all ease 0.15s;
+                -ms-transition: all ease 0.15s;
+                transition: all ease 0.15s;
+                cursor: pointer;
+                vertical-align: middle;
+                margin: 0;
+                position: relative;
+                padding: 6px 8px;
+                font-size: 14px;
+                font-weight: normal;
+                line-height: 1.428571429;
+                text-align: center;
+                white-space: nowrap;
+            }
+
+            .btn-primary {
+                background-color: #428bca !important;
+                border-color: #428bca;
+            }
+
+            .btn-primary:hover {
+                background-color: #1b6aaa !important;
+                border-color: #428bca;
+            }
+
+            .border-red, .border-red:hover {
+                border: 5px solid red;
+            }        
+
+            #tip_text {
+                margin-top: 30px;
+                margin-bottom: 30px;
+            }
+
+            .btn-link {
+                display: inline-block;
+                background: rgba(30, 128, 255, 0.05);
+                border: 1px solid rgba(30, 128, 255, 0.3);
+                border-radius: 4px;
+                box-shadow: none !important;
+                -webkit-transition: all ease .15s;
+                transition: all ease .15s;
+                cursor: pointer;
+                vertical-align: middle;
+                margin: 0;
+                position: relative;
+                padding: 8px 20px;
+                font-size: 14px;
+                font-weight: normal;
+                line-height: 1.428571429;
+                text-align: center;
+                white-space: nowrap;
+                box-sizing: border-box;
+                color: #1e80ff
+            }
+
+            .btn-link:hover {
+                cursor: pointer;
+                background: rgba(30, 128, 255, 0.1);
+                border-color: rgba(30, 128, 255, 0.45)
+            }
+
+            .btn-link:active {
+                background: rgba(30, 128, 255, 0.2);
+                border-color: rgba(30, 128, 255, 0.6)
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div id="img-wrap" class="img">
+                <div id="tip_img" class="card-back card-container">
+                    <div class="top">
+                        <h1 id="title"></h1>
+                    </div>
+                    <p id="introduction" class="middle text">
+                    </p>
+                    <p class="bottom">
+                        <button id="theme_default" class="btn btn-primary border-red"></button>
+                        <button id="theme_redirect" class="btn btn-primary"></button>
+                        <button id="theme_source" class="btn btn-primary"></button>
+                    </p>
+                </div>
+            </div>
+            <p id="tip_text"></p>
+            <button id="theme_select" class="btn-link"></button>
+        </div>
+    </body>
+    <script type="text/javascript">
+        document.getElementById('tip_img').style = 'background-image: url(' + window.parent.config.no_theme.back_image + ');';
+        const themeName = window.parent.config.themes[0];
+        document.getElementById('title').textContent = themeName.charAt(0).toUpperCase() + themeName.slice(1);
+        document.getElementById('introduction').textContent = window.parent.config.introduction[themeName];
+        document.getElementById('theme_default').textContent = window.parent.config.button.theme_default;
+        document.getElementById('theme_redirect').textContent = window.parent.config.button.theme_redirect;
+        document.getElementById('theme_source').textContent = window.parent.config.button.theme_source;
+        document.getElementById('tip_text').textContent = window.parent.config.no_theme.tip_text;
+        document.getElementById('theme_select').textContent = window.parent.config.no_theme.btn_text;
+        if (Diversity.browser.getParameter('theme_flag') === '0')
+            document.getElementById('img-wrap').style.display = 'block';
+        document.getElementById('theme_select').addEventListener('click', function() {  
+            // 父页面跳转
+            window.parent.location.href = window.parent.config.menu.theme;
+        });
+    </script>
+</html>
