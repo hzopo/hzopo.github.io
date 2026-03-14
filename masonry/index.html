@@ -80,7 +80,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://hzopo.github.io/404.html"/>
+    <link rel="canonical" href="http://hzopo.github.io/masonry/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -96,7 +96,7 @@
     
     <title>
         
-            Page Not Found | Dergod Blog
+            画廊 | Dergod Blog
         
     </title>
 
@@ -283,7 +283,7 @@
 
                             <li class="navbar-item">
                                 <!-- Menu -->
-                                <a class=""
+                                <a class="active"
                                    href="/masonry/"
                                         >
                                     <i class="fa-solid fa-image fa-fw"></i>
@@ -424,7 +424,7 @@
 
                     <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
                         
-                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
                            href="/masonry/"
                         >
                             <span>
@@ -471,14 +471,24 @@
 			
 
 			<div class="main-content">
-				<div class="nf-container">
-    <div class="nf-text">
-        <h1>404<br>Page Not Found</h1>
-    </div>
-    <div class="nf-button">
-        <a href="/" class="button large center"><i class="fa-regular fa-house"></i> 回到首页</a>
-    </div>
+				
+
+
+<div class="py-8 sm:py-0">
+	<h1 class="page-title-header">
+		画廊
+	</h1>
+
+	<div class="min-h-screen!" id="masonry-container" data-masonry-data-url="/masonry/data.json"></div>
+
+	<div class="masonry-loadmore is-hidden" id="masonry-loadmore" aria-live="polite">
+		<span class="masonry-spinner" aria-hidden="true"></span>
+		<span class="masonry-loadmore-text">照片加载中...</span>
+	</div>
+
+	<div id="masonry-sentinel" aria-hidden="true"></div>
 </div>
+
 
 			</div>
 
