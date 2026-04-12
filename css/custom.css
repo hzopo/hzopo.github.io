@@ -1,0 +1,57 @@
+/* Der言der语 - 专属卡片样式 */
+.post-content blockquote {
+  background: linear-gradient(135deg, #f9fbff, #eef3fb);
+  border-left: 4px solid #A31F34;
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin: 24px 0;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+/* 悬停效果 */
+.post-content blockquote:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+}
+
+/* 标题样式 */
+.post-content blockquote strong {
+  color: #2c3e50;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* 段落样式 */
+.post-content blockquote p {
+  margin: 6px 0;
+  line-height: 1.8;
+}
+
+/* 列表样式 */
+.post-content blockquote ul {
+  padding-left: 20px;
+}
+
+.post-content blockquote li {
+  margin: 4px 0;
+}
+
+/* 分隔线美化 */
+.post-content hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #dcdcdc, transparent);
+  margin: 32px 0;
+}
+
+/* 深色模式适配 */
+[data-theme="dark"] .post-content blockquote {
+  background: linear-gradient(135deg, #1e2633, #111827);
+  border-left: 4px solid #A31F34;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .post-content blockquote strong {
+  color: #e5e7eb;
+}
