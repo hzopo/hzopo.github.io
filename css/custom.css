@@ -1,57 +1,129 @@
-/* Der言der语 - 专属卡片样式 */
+/* ================================
+   Der言der语 · Glass Card Style
+   ================================ */
+
+/* 主卡片样式 */
 .post-content blockquote {
-  background: linear-gradient(135deg, #f9fbff, #eef3fb);
-  border-left: 4px solid #A31F34;
-  border-radius: 12px;
-  padding: 18px 22px;
-  margin: 24px 0;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.85),
+    rgba(245, 247, 250, 0.75)
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 22px 26px;
+  margin: 28px 0;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-left: 5px solid #A31F34;
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.08),
+    0 0 12px rgba(163, 31, 52, 0.15);
+  transition: all 0.35s ease;
+  overflow: hidden;
 }
 
-/* 悬停效果 */
+/* 顶部渐变光效 */
+.post-content blockquote::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(90deg, #A31F34, #ff7a9c, #A31F34);
+  opacity: 0.9;
+}
+
+/* 装饰性引号 */
+.post-content blockquote::after {
+  content: "“";
+  position: absolute;
+  top: -10px;
+  right: 16px;
+  font-size: 72px;
+  color: rgba(163, 31, 52, 0.08);
+  font-family: Georgia, serif;
+}
+
+/* 悬停动画 */
 .post-content blockquote:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+  transform: translateY(-6px) scale(1.01);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.12),
+    0 0 18px rgba(163, 31, 52, 0.25);
 }
 
 /* 标题样式 */
 .post-content blockquote strong {
-  color: #2c3e50;
+  color: #A31F34;
   font-weight: 600;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.5px;
 }
 
-/* 段落样式 */
+/* 段落间距 */
 .post-content blockquote p {
-  margin: 6px 0;
-  line-height: 1.8;
+  margin: 10px 0;
+  line-height: 1.85;
 }
 
 /* 列表样式 */
 .post-content blockquote ul {
-  padding-left: 20px;
+  padding-left: 22px;
+  margin: 8px 0;
 }
 
 .post-content blockquote li {
-  margin: 4px 0;
+  margin: 6px 0;
 }
 
 /* 分隔线美化 */
 .post-content hr {
   border: none;
   height: 1px;
-  background: linear-gradient(to right, transparent, #dcdcdc, transparent);
-  margin: 32px 0;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(163, 31, 52, 0.4),
+    transparent
+  );
+  margin: 40px 0;
 }
 
-/* 深色模式适配 */
+/* ================================
+   深色模式适配
+   ================================ */
 [data-theme="dark"] .post-content blockquote {
-  background: linear-gradient(135deg, #1e2633, #111827);
-  border-left: 4px solid #A31F34;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(
+    135deg,
+    rgba(30, 41, 59, 0.85),
+    rgba(15, 23, 42, 0.85)
+  );
+  border-left: 5px solid #ff4d6d;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.5),
+    0 0 15px rgba(255, 77, 109, 0.2);
 }
 
 [data-theme="dark"] .post-content blockquote strong {
-  color: #e5e7eb;
+  color: #ff8fa3;
+}
+
+[data-theme="dark"] .post-content blockquote::before {
+  background: linear-gradient(90deg, #ff4d6d, #ff8fa3, #ff4d6d);
+}
+
+[data-theme="dark"] .post-content blockquote::after {
+  color: rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] .post-content hr {
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 77, 109, 0.4),
+    transparent
+  );
 }
