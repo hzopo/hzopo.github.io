@@ -138,3 +138,64 @@
     opacity: 0;
   }
 }
+
+/* =========================
+   🌌 全局基础优化
+========================= */
+
+body {
+  overflow-x: hidden;
+}
+
+/* =========================
+   🌊 点击波纹（ripple）
+========================= */
+
+@keyframes ripple-effect {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(12);
+    opacity: 0;
+  }
+}
+
+/* =========================
+   🖱️ 鼠标拖影（丝带版）
+========================= */
+
+.trail-point {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+
+  /* 关键：让它更“柔” */
+  filter: blur(0.6px);
+  transition: opacity 0.2s linear;
+
+  /* 防止被选中 */
+  user-select: none;
+}
+
+/* =========================
+   🌙 深色模式优化（可选）
+========================= */
+
+@media (prefers-color-scheme: dark) {
+  .trail-point {
+    filter: blur(0.8px);
+  }
+}
+
+/* =========================
+   ⚡ 减少动画（无障碍优化）
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .trail-point {
+    display: none !important;
+  }
+}
