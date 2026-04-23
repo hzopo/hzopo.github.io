@@ -1,3 +1,8 @@
+
+/* =========================
+   🌌 AURORA QUOTE SYSTEM
+   ========================= */
+
 .post-content blockquote,
 .post blockquote,
 .markdown-body blockquote,
@@ -6,64 +11,130 @@ blockquote {
   position: relative;
   overflow: visible !important;
 
-  margin: 1.6em 0;
-  padding: 1.3em 1.6em;
+  margin: 1.8em 0;
+  padding: 1.4em 1.7em;
 
-  /* 🔥 关键：提高玻璃可见度 */
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(22px) saturate(180%);
-  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  /* 🧊 基础玻璃 */
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
 
   border-radius: 18px;
 
   border: 1px solid rgba(255, 255, 255, 0.12);
 
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.35),
+    0 25px 70px rgba(0, 0, 0, 0.35),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
 
+  color: rgba(255, 255, 255, 0.88);
+
   z-index: 1;
+
+  transition: all 0.35s ease;
 }
 
-/* 🌈 强制光晕“在外层扩散” */
+/* =========================
+   🌌 极光核心背景层
+   ========================= */
 .post-content blockquote::before {
   content: "";
   position: absolute;
-  inset: -80px;
+  inset: -120px;
   z-index: 0;
   pointer-events: none;
 
-  background: radial-gradient(circle at 20% 30%,
+  background:
+    radial-gradient(circle at 20% 30%,
       rgba(56, 189, 248, 0.35),
       transparent 45%),
-    radial-gradient(circle at 80% 60%,
-      rgba(168, 85, 247, 0.25),
+    radial-gradient(circle at 70% 40%,
+      rgba(168, 85, 247, 0.28),
       transparent 50%),
-    radial-gradient(circle at 50% 90%,
-      rgba(34, 211, 238, 0.18),
-      transparent 55%);
+    radial-gradient(circle at 40% 80%,
+      rgba(34, 211, 238, 0.22),
+      transparent 55%),
+    radial-gradient(circle at 80% 80%,
+      rgba(99, 102, 241, 0.18),
+      transparent 60%);
 
-  filter: blur(20px);
-  animation: glowMove 8s ease-in-out infinite;
+  filter: blur(28px);
+  opacity: 0.9;
+
+  animation: auroraFlow 10s ease-in-out infinite;
 }
 
-/* ✨ 内容层必须压上去 */
+/* =========================
+   ✨ 引用标记（漂浮引号）
+   ========================= */
+.post-content blockquote::after {
+  content: "❝";
+  position: absolute;
+  top: -14px;
+  right: 16px;
+  font-size: 3em;
+
+  color: rgba(125, 211, 252, 0.18);
+  font-family: serif;
+
+  z-index: 2;
+
+  animation: floatQuote 6s ease-in-out infinite;
+}
+
+/* =========================
+   🫧 内容层级
+   ========================= */
 .post-content blockquote * {
   position: relative;
   z-index: 2;
 }
 
-/* 🌊 hover 光增强 */
+/* =========================
+   🌊 hover：扫描光
+   ========================= */
 .post-content blockquote:hover {
-  transform: translateY(-4px) scale(1.01);
+  transform: translateY(-4px) scale(1.015);
+
   box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.45),
-    0 0 40px rgba(56, 189, 248, 0.25);
+    0 35px 90px rgba(0, 0, 0, 0.45),
+    0 0 50px rgba(56, 189, 248, 0.25);
 }
 
-/* 🌈 动态光流 */
-@keyframes glowMove {
-  0% { transform: translate(-2%, -2%) scale(1); }
-  50% { transform: translate(3%, 2%) scale(1.1); }
-  100% { transform: translate(-2%, -2%) scale(1); }
+/* 扫描光层 */
+.post-content blockquote:hover::before {
+  animation-duration: 4s;
+  filter: blur(22px) brightness(1.2);
+}
+
+/* =========================
+   🌈 极光流动动画
+   ========================= */
+@keyframes auroraFlow {
+  0% {
+    transform: translate(-2%, -2%) scale(1);
+  }
+  50% {
+    transform: translate(3%, 2%) scale(1.08);
+  }
+  100% {
+    transform: translate(-2%, -2%) scale(1);
+  }
+}
+
+/* =========================
+   🫧 引号漂浮
+   ========================= */
+@keyframes floatQuote {
+  0% { transform: translateY(0px); opacity: 0.18; }
+  50% { transform: translateY(6px); opacity: 0.28; }
+  100% { transform: translateY(0px); opacity: 0.18; }
+}
+
+/* =========================
+   🌙 深色适配
+   ========================= */
+[data-theme="dark"] .post-content blockquote {
+  background: rgba(20, 20, 20, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
