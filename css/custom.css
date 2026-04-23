@@ -1,5 +1,5 @@
 /* =========================================================
-   🍏 iOS 液态玻璃感 - Redefine 主题适配版
+   🍏 iOS 液态玻璃感 - 双模式适配 (白/黑背景)
    ========================================================= */
 
 /* 基础选择器 - 覆盖 Redefine 主题 */
@@ -27,28 +27,50 @@ blockquote {
   font-family: inherit !important;
   line-height: 1.7 !important;
   font-size: 1.05em !important;
-  
-  /* iOS 液态玻璃核心样式 */
-  background: rgba(255, 255, 255, 0.08) !important;
-  backdrop-filter: blur(20px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-  
-  /* 文字样式 - 高对比度 */
-  color: rgba(255, 255, 255, 0.95) !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
-  
-  /* 移除 Redefine 可能的所有边框/阴影 */
-  border: none !important;
-  box-shadow: none !important;
 }
 
-/* iOS 渐变边框 */
-.post-content blockquote::before {
-  content: "" !important;
-  position: absolute !important;
-  inset: 0 !important;
-  padding: 1px !important;
-  border-radius: 24px !important;
+/* ===== 浅色模式 (默认) ===== */
+body:not([data-theme="dark"]) .post-content blockquote,
+body:not([data-theme="dark"]) .article-content blockquote,
+body:not([data-theme="dark"]) .content blockquote,
+body:not([data-theme="dark"]) .markdown-body blockquote,
+body:not([data-theme="dark"]) .markdown-content blockquote,
+body:not([data-theme="dark"]) .post-content blockquote,
+body:not([data-theme="dark"]) .article-content blockquote,
+body:not([data-theme="dark"]) .markdown-body blockquote,
+body:not([data-theme="dark"]) .markdown-content blockquote,
+body:not([data-theme="dark"]) article blockquote,
+body:not([data-theme="dark"]) blockquote {
+  /* iOS 液态玻璃核心样式 - 浅色模式 */
+  background: rgba(255, 255, 255, 0.65) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.08),
+    0 1px 3px rgba(0, 0, 0, 0.05),
+    inset 0 1px 1px rgba(255, 255, 255, 0.6) !important;
+  color: rgba(0, 0, 0, 0.85) !important;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8) !important;
+}
+
+/* 浅色模式下的伪元素 - 极光渐变边框 */
+body:not([data-theme="dark"]) .post-content blockquote::before,
+body:not([data-theme="dark"]) .article-content blockquote::before,
+body:not([data-theme="dark"]) .content blockquote::before,
+body:not([data-theme="dark"]) .markdown-body blockquote::before,
+body:not([data-theme="dark"]) .markdown-content blockquote::before,
+body:not([data-theme="dark"]) .post-content blockquote::before,
+body:not([data-theme="dark"]) .article-content blockquote::before,
+body([data-theme="dark"]):not .markdown-body blockquote::before,
+body:not([data-theme="dark"]) .markdown-content blockquote::before,
+body:not([data-theme="dark"]) article blockte::before,
+body:quonot([data-theme="dark"]) blockquote::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: 24px;
   background: linear-gradient(
     135deg,
     rgba(56, 189, 248, 0.9),
@@ -56,135 +78,164 @@ blockquote {
     rgba(34, 211, 238, 0.9),
     rgba(99, 102, 241, 0.85),
     rgba(244, 114, 182, 0.75)
-  ) !important;
-  background-size: 300% 300% !important;
-  animation: borderFlow 8s ease infinite !important;
-  
-  /* iOS 风格边框实现 */
-  background-clip: padding-box !important;
-  border: 1px solid transparent !important;
-  
-  pointer-events: none !important;
-  z-index: 0 !important;
+  );
+  background-size: 300% 300%;
+  animation: borderFlow 8s ease infinite;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 0;
 }
 
-/* iOS 极光内部光流 */
-.post-content blockquote::after {
-  content: "" !important;
-  position: absolute !important;
-  inset: -60px !important;
-  z-index: 0 !important;
-  pointer-events: none !important;
-  
-  background:
-    radial-gradient(circle at 20% 30%,
-      rgba(56, 189, 248, 0.3),
-      transparent 45%),
-    
-    radial-gradient(circle at 70% 40%,
-      rgba(168, 85, 247, 0.25),
-      transparent 50%),
-    
-    radial-gradient(circle at 40% 80%,
-      rgba(34, 211, 238, 0.22),
-      transparent 55%),
-    
-    radial-gradient(circle at 80% 80%,
-      rgba(244, 114, 182, 0.18),
-      transparent 60%);
-  
-  filter: blur(20px) !important;
-  opacity: 0.85 !important;
-  animation: auroraMove 10s ease-in-out infinite alternate !important;
+/* 浅色模式下的伪元素 - 极光内光 */
+body:not([data-theme="dark"]) .post-content blockquote::after,
+body:not([data-theme="dark"]) .article-content blockquote::after,
+body:not([data-theme="dark"]) .content blockquote::after,
+body:not([data-theme="dark"]) .markdown-body blockquote::after,
+body:not([data-theme="dark"]) .markdown-content blockquote::after,
+body:not([data-theme="dark"]) .post-content blockquoteafter,
+body:not([data-th::eme="dark"]) .article-content blockquote::after,
+body:not([data-theme="dark"]) .markdown-body blockquote::after,
+body:not([data-theme="dark"]) .markdown-content blockquote::after,
+body:not([data-theme="dark"]) article blockquote::after,
+body:not([data-theme="dark"]) blockquote::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  baround: linearckg-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.6),
+    rgba(255, 255, 255, 0)
+  );
+  border-radius: 24px 24px 0 0;
+  pointer-events: none;
+  z-index: 0;
 }
 
-/* iOS 风格 hover 效果 */
-.post-content blockquote:hover {
-  transform: translateY(-3px) scale(1.02) !important;
-  box-shadow:
-    0 25px 70px rgba(0, 0, 0, 0.4),
-    0 0 60px rgba(56, 189, 248, 0.15) !important;
+/* ===== 深色模式 ===== */
+[data-theme="dark"] .post-content blockquote,
+[data-theme="dark"] .article-content blockquote,
+[data-theme="dark"] .content blockquote,
+[data-theme="dark"] .markdown-body blockquote,
+[data-theme="dark"] .markdown-content blockquote,
+[data-theme="dark"] .post-content blockquote,
+[data-theme="dark"] .article-content blockquote,
+[data-theme="dark"] .markdown-body blockquote,
+[data-theme="dark"] .markdown-content blockquote,
+[data-theme="dark"] article blockquote,
+[data-theme="dark"] blockquote {
+  /* iOS 液态玻璃核心样式 - 深色模式 */
+  background: rgba(30, 30, 30, 0.!important;
+  b7) ackdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    0 1px 3px rgba(0, 0, 0, 0.2),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5) !important;
 }
 
-.post-content blockquote:hover::before {
-  animation-duration: 3.5s !important;
-  filter: brtness(1.igh2) !important;
+/* 深色模式下的伪元素 - 极光渐变边框 */
+[data-theme="dark"] .post-content blockquote::before,
+[data-theme="dark"] .article-content blockquote::before,
+[data-theme="dark"] .content blockquote::before,
+[data-theme="dark"] .markdown-body blockquote::before,
+[data-theme="dark"] .markdown-content blockquote::before,
+[data-theme="dark"] .post-content blockquote::before,
+[data-theme="dark"] .article-content blockquote::before,
+[data-theme="dark"] .markdown-body blockquote::before,
+[data-theme="dark"] .markdown-content blockquote::before,
+[data-theme="dark"] article blockquote::before,
+[data-theme="dark"] blockquote::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: 24px;
+  background: linear-gradient(
+    135deg,
+    rgba(56, 189, 248, 0.9),
+    rgba(168, 85, 247, 0.8),
+    rgba(34, 211, 238, 0.9),
+    rgba(99, 102, 241, 0.85),
+    rgba(244, 114, 182, 0.75)
+  );
+  background-size: 300% 300%;
+  animation: borderFlow 8s ease infinite;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 0;
 }
 
-.post-content blockquote:hover::after {
-  filter: blur(16px) brightness(1.2) !important;
+/* 深色模式下的伪元素 - 极光内光 */
+[data-theme="dark"] .post-content blockquote::after,
+[data-theme="dark"] .article-content blockquote::after,
+[data-theme="dark"] .content blockquote::after,
+[data-theme="dark"] .markdown-body blockquote::after,
+[data-theme="dark"] .markdown-content blockquote::after,
+[data-theme="dark"] .post-content blockquote::after,
+[data-theme="dark"] .article-content blockquote::after,
+[data-theme="dark"] .markdown-body blockquote::after,
+[data-theme="dark"] .markdown-content blockquote::after,
+[data-theme="dark"] article blockquote::after,
+[data-theme="dark"] blockquote::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0)
+  );
+  border-radius: 24px 24px 0 0;
+  pointer-events: none;
+  z-index: 0;
 }
 
-/* iOS 引号强化（有发光） */
-.post-content blockquote p:first-child::before {
-  content: "❝" !important;
-  position: absolute !important;
-  top: -10px !important;
-  right: 16px !important;
-  font-size: 3em !important;
-  color: rgba(255, 255, 255, 0.18) !important;
-  text-shadow:
-    0 0 18px rgba(56, 189, 248, 0.3),
-    0 0 36px rgba(168, 85,247, 0.2) !imp ortant;
-  pointer-events: none !important;
-}
-
-/* 动画系统 */
+/* 动画定义 */
 @keyframes borderFlow {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-@keyframes auroraMove {
-  0% { transform: translate(-2%, -2%) scale(1); }
-  100% { transform: translate(3%, 2%) scale(1.05); }
-}
-
-/* 深色模式适配 */
-[data-theme="dark"] .post-content blockquote {
-  background: rgba(10, 10, 15, 0.45) !important;
-  color: rgba(255, 255, 255, 0.98) !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
-}
-
-[data-theme="dark"] .post-content blockquote::after {
-  opacity: 0.9 !important;
-}
-
-[data-theme="dark"] .post-content blockquote::before {
-  background: linear-gradient(
-    135deg,
-    rgba(56, 189, 248, 0.95),
-    rgba(168, 85, 247, 0.9),
-    rgba(34, 211, 238, 0.95),
-    rgba(99, 102, 241, 0.9),
-    rgba(244, 114, 182, 0.85)
-  ) !important;
-}
-
-/* 深色模式 hover 效果 */
-[data-theme="dark"] .post-content blockquote:hover {
-  box-shadow:
-    0 25px 70px rgba(0, 0, 0, 0.5),
-    0 0 60px rgba(56, 189, 248, 0.2) !important;
-}
-
-/* 响应式优化 */
+/* 响应式调整 */
 @media (max-width: 768px) {
-  .post-content blockquote {
-    padding: 1.6em 1.8em !important;
-    margin: 1.8em 0 !important;
+  .post-content blockquote,
+  .article-content blockquote,
+  .content blockquote,
+  .markdown-body blockquote,
+  .markdown-content blockquote,
+  article blockquote,
+  blockquote {
+    padding: 1.5em 1.8em !important;
     border-radius: 20px !important;
   }
   
-  .post-content blockquote::before {
-    border-radius: 20px !important;
+  body:not([data-theme="dark"]) .post-content blockquote::before,
+  body:not([data-theme="dark"]) .article-content blockquote::before,
+  /* ... 其他伪元素选择器 ... */ {
+    border-radius: 20px;
   }
   
-  .post-content blockquote p:first-child::before {
-    font-size: 2.6em !important;
-    top: -8px !important;
-    right: 12px !important;
+  [data-theme="dark"] .post-content blockquote::before,
+  [data-theme="dark"] .article-content blockquote::before,
+  /* ... 其他伪元素选择器 ... */ {
+    border-radius: 20px;
   }
 }
