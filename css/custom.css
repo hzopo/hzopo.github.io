@@ -1,167 +1,97 @@
-/* 浅色模式 - 米黄色纸张 */
+/* 强制覆盖 Redefine 主题样式 - 使用 !important 确保优先级 */
+body .post-content blockquote,
+body .article-content blockquote,
+body .markdown-body blockquote,
+.post-content blockquote,
+.article-content blockquote,
+.markdown-body blockquote {
+  /* 重置所有可能影响的元素 */
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-style: normal !important;
+  quotes: none !important;
+}
+
+/* 浅色模式 - 真实纸张质感 */
 body:not([data-theme="dark"]) .post-content blockquote {
-  background: linear-gradient(135deg, #fef9f3, #fbf3e9) !important;
-  border-left: 4px solid #e8d4b6 !important;
+  background: linear-gradient(135deg, #fdfcf9, #faf7f0) !important;
+  border-left: 4px solid #d9c8b0 !important;
   border-radius: 10px !important;
-  color: #5c4b37 !important;
+  color: #5a4a3a !important;
   padding: 1.8em 2.2em !important;
   margin: 2.2em 0 !important;
   position: relative !important;
   box-shadow: 
     0 1px 3px rgba(139, 115, 85, 0.08),
     0 4px 12px rgba(139, 115, 85, 0.06) !important;
-  transition: all 0.3s ease !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   overflow: hidden !important;
-  border: 1px solid rgba(232, 212, 182, 0.3) !important;
+  border: 1px solid rgba(217, 200, 176, 0.3) !important;
 }
 
-/* 浅色纸张装饰纹理 */
+/* 纸张纹理效果 */
 body:not([data-theme="dark"]) .post-content blockquote::before {
   content: "" !important;
   position: absolute !important;
   inset: 0 !important;
   background: 
-    linear-gradient(90deg, transparent 95%, rgba(232, 212, 182, 0.1) 100%),
+    linear-gradient(90deg, transparent 95%, rgba(217, 200, 176, 0.1) 100%),
     linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px) !important;
-  background-size: 100% 100%, 20px 20px, 20px 20px !important;
-  pointer-events: none !important;
-  z-index: 0 !important;
+  background-size: 100% 24px, 24px 100%, 24px 100% !important;
   opacity: 0.4 !important;
-  mix-blend-mode: overlay !important;
+  pointer-events: none !important;
 }
 
-/* 浅色模式悬停 */
+/* 浅色模式悬停效果 */
 body:not([data-theme="dark"]) .post-content blockquote:hover {
-  background: linear-gradient(135deg, #fcf5ea, #f8edd9) !important;
-  border-left-color: #d4b483 !important;
+  background: linear-gradient(135deg, #faf7f0, #f5ede0) !important;
+  border-left-color: #c5b39e !important;
   box-shadow: 
-    0 2px 8px rgba(139, 115, 85, 0.12),
-    0 6px 20px rgba(139, 115, 85, 0.08) !important;
-  transform: translateY(-2px) !important;
-  border-color: rgba(212, 180, 131, 0.4) !important;
+    0 2px 6px rgba(139, 115, 85, 0.12),
+    0 8px 16px rgba(139, 115, 85, 0.08) !important;
+  transform: translateY(-1px) !important;
 }
 
-/* 深色模式 - 牛皮纸色 */
+/* 深色模式 - 纸张质感 */
 [data-theme="dark"] .post-content blockquote {
-  background: linear-gradient(135deg, #2c2419, #3a2e1f) !important;
-  border-left: 4px solid #8b7355 !important;
+  background: linear-gradient(135deg, #2d2a25, #24211d) !important;
+  border-left: 4px solid #4a4238 !important;
   border-radius: 10px !important;
-  color: #e8d8c0 !important;
+  color: #e0d5c7 !important;
   padding: 1.8em 2.2em !important;
   margin: 2.2em 0 !important;
   position: relative !important;
   box-shadow: 
     0 1px 3px rgba(0, 0, 0, 0.3),
-    0 4px 12px rgba(0, 0, 0, 0.25) !important;
-  transition: all 0.3s ease !important;
+    0 4px 12px rgba(0, 0, 0, 0.2) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   overflow: hidden !important;
-  border: 1px solid rgba(139, 115, 85, 0.3) !important;
+  border: 1px solid rgba(74, 66, 56, 0.3) !important;
 }
 
-/* 深色纸张装饰纹理 */
+/* 深色模式纸张纹理 */
 [data-theme="dark"] .post-content blockquote::before {
   content: "" !important;
   position: absolute !important;
-  inset: 0 !important;
-  background: 
-    linear-gradient(90deg, transparent 95%, rgba(139, 115, 85, 0.2) 100%),
-    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px) !important;
-  background-size: 100% 100%, 20px 20px, 20px 20px !important;
-  pointer-events: none !important;
-  z-index: 0 !important;
+  inset:0 !important;
+  ba ckground: 
+    linear-gradient(90deg, transparent 95%, rgba(74, 66, 56, 0.1) 100%),
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px) !important;
+  background-size: 100% 24px, 24px 100%, 24px 100% !important;
   opacity: 0.3 !important;
-  mix-blend-mode: overlay !important;
+  pointer-events: none !important;
 }
 
-/* 深色模式悬停 */
+/* 深色模式悬停效果 */
 [data-theme="dark"] .post-content blockquote:hover {
-  background: linear-gradient(135deg, #3a2e1f, #4a3c28) !important;
-  border-left-color: #a0785a !important;
+  background: linear-gradient(135deg, #24211d, #1f1c19) !important;
+  border-left-color: #5a5046 !important;
   box-shadow: 
-    0 2px 8px rgba(0, 0, 0, 0.4),
-    0 6px 20px rgba(0, 0, 0, 0.3) !important;
-  transform: translateY(-2px) !important;
-  border-color: rgba(160, 120, 90, 0.4) !important;
-}
-
-/* 引用标志 - 复古引号 */
-.post-content blockquote p:first-child::before {
-  content: "❝" !important;
-  position: absolute !important;
-  top: 0.5em !important;
-  left: 0.6em !important;
-  font-size: 2.8em !important;
-  font-family: Georgia, serif !important;
-  line-height: 1 !important;
-  z-index: 1 !important;
-  opacity: 0.5 !important;
-  transition: opacity 0.3s ease !important;
-}
-
-body:not([data-theme="dark"]) .post-content blockquote p:first-child::before {
-  color: #b5945c !important;
-  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5) !important;
-}
-
-[data-theme="dark"] .post-content blockquote p:first-child::before {
-  color: #a0785a !important;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3) !important;
-}
-
-/* 悬停时引号加深 */
-.post-content blockquote:hover p:first-child::before {
-  opacity: 0.7 !important;
-}
-
-/* 内容样式 */
-.post-content blockquote p {
-  position: relative !important;
-  z-index: 2 !important;
-  margin: 0.8em 0 !important;
-  padding: 0 !important;
-  line-height: 1.8 !important;
-  font-weight: 400 !important;
-}
-
-.post-content blockquote p:first-child {
-  margin-top: 0 !important;
-}
-
-.post-content blockquote p:last-child {
-  margin-bottom: 0 !important;
-}
-
-/* 链接样式 - 仿下划线 */
-.post-content blockquote a {
-  color: inherit !important;
-  text-decoration: none !important;
-  border-bottom: 1px solid rgba(181, 148, 92, 0.4) !important;
-  padding-bottom: 2px !important;
-  transition: all 0.2s ease !important;
-}
-
-body:not([data-theme="dark"]) .post-content blockquote a:hover {
-  border-bottom-color: #8b7355 !important;
-  color: #6b5230 !important;
-}
-
-[data-theme="dark"] .post-content blockquote a:hover {
-  border-bottom-color: #c9a87a !important;
-  color: #d4b483 !important;
-}
-
-/* 响应式 */
-@media (max-width: 768px) {
-  .post-content blockquote {
-    padding: 1.4em 1.8em !important;
-    margin: 1.8em 0 !important;
-  }
-  
-  .post-content blockquote p:first-child::before {
-    font-size: 2.2em !important;
-    top: 0.4em !important;
-    left: 0.4em !important;
-  }
+    0 2px 6px rgba(0, 0, 0, 0.4),
+    0 8px 16px rgba(0, 0, 0, 0.3) !important;
+  transform: translateY(-1px) !important;
 }
