@@ -1,0 +1,50 @@
+.music-pro {
+  max-width: 380px;
+  margin: 24px auto;
+  padding: 14px 16px;
+
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+
+  text-align: center;
+
+  transition: transform 0.2s ease;
+}
+
+/* hover 轻微浮动 */
+.music-pro:hover {
+  transform: translateY(-2px);
+}
+
+.music-title {
+  font-size: 13px;
+  opacity: 0.75;
+  margin-bottom: 10px;
+}
+
+.music-frame {
+  width: 100%;
+  height: 86px;
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.music-tip {
+  margin-top: 8px;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+/* 手机优化 */
+@media (max-width: 600px) {
+  .music-pro {
+    margin: 18px 12px;
+  }
+}
