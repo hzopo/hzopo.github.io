@@ -1,176 +1,196 @@
-/* =========================================================
-   ✨ 极简高级感 - Redefine 主题适配版
-   ========================================================= */
+/* ========================
+   基础选择器覆盖
+   ======================== */
 
-/* 基础选择器 - 覆盖 Redefine 主题 */
-body .post-content blockquote,
-body .article-content blockquote,
-body .content blockquote,
-body .markdown-body blockquote,
-body .markdown-content blockquote,
+/* 移除 Redefine 默认样式 */
 .post-content blockquote,
 .article-content blockquote,
-.markdown-body blockquote,
-.markdown-content blockquote,
-article blockquote,
-blockquote {
-  position: relative !important;
-  overflow: hidden !important;
-  margin: 2.2em 0 !important;
-  padding: 1.8em 2em !important;
-  border-radius: 12px !important;
+.markdown-body blockquote {
+  background: none !important;
   border: none !important;
-  border-left: none !important;
-  box-shadow: none !important;
-  z-index: 1 !important;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  font-family: inherit !important;
-  line-height: 1.7 !important;
-  font-size: 1.05em !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-style: normal !important;
+  quotes: none !important;
 }
 
-/* ===== 浅色模式 (默认) ===== */
-body:not([data-theme="dark"]) .post-content blockquote,
-body:not([data-theme="dark"]) .article-content blockquote,
-body:not([data-theme="dark"]) .content blockquote,
-body:not([data-theme="dark"]) .markdown-body blockquote,
-body:not([data-theme="dark"]) .markdown-content blockquote,
-body:not([data-theme="dark"]) .post-content blockquote,
-body:not([data-theme="dark"]) .article-content blockquote,
-body:not([data-theme="dark"]) .markdown-body blockquote,
-body:not([data-theme="dark"]) .markdown-content blockquote,
-body:not([data-theme="dark"]) article blockquote,
-body:not([data-theme="dark"]) blockquote {
-  background: rgba(245, 245, 245, 0.6) !important;
-  backdrop-filter: blur(8px) !important;
-  border: 1px solid rgba(230, 230, 230, 0.8) !important;
-  color: rgba(60, 60, 60, 0.9) !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+/* ========================
+   浅色模式
+   ======================== */
+body:not([data-theme="dark"]) .post-content blockquote {
+  background: linear-gradient(135deg, #f9fafb, #f3f4f6) !important;
+  border-left: 4px solid #d1d5db !important;
+  border-radius: 10px !important;
+  color: #374151 !important;
+  padding: 1.8em 2.2em !important;
+  margin: 2.2em 0 !important;
+  position: relative !important;
+  box-shadow: 
+    0 1px 2px rgba(0,0,0,0.02),
+    0 4px 12px rgba(0,0,0,0.04) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  overflow: hidden !important;
 }
 
-/* 悬停效果 */
-body:not([data-theme="dark"]) .post-content blockquote:hover,
-body:not([data-theme="dark"]) .article-content blockquote:hover,
-body:not([data-theme="dark"]) .content blockquote:hover,
-body:not([data-theme="dark"]) .markdown-body blockquote:hover,
-body:not([data-theme="dark"]) .markdown-content blockquote:hover,
-body:not([data-theme="dark"]) .post-content blockquote:hover,
-body:not([data-theme="dark"]) .article-content blockquote:hover,
-body:not([data-theme="dark"]) .markdown-body blockquote:hover,
-body:not([data-theme="dark"]) .markdown-content blockquote:hover,
-body:not([data-theme="dark"]) article blockquote:hover,
-body:not([data-theme="dark"]) blockquote:hover {
-  background: rgba(240, , 240, 0.8) !important;
- 240 border-color: rgba(220, 220, 220, 0.9) !important;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05) !important;
-  transform: translateY(-2px) !important;
+/* 浅色模式装饰线 */
+body:not([data-theme="dark"]) .post-content blockquote::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 4px !important;
+  height: 100% !important;
+  background: linear-gradient(to bottom, 
+    rgba(255,255,255,0.9) 0%,
+    rgba(255,255,255,0.6) 50%,
+    rgba(255,255,255,0.9) 100%) !important;
+  opacity: 0.5 !important;
 }
 
-/* ===== 深色模式 ===== */
-[data-theme="dark"] .post-content blockquote,
-[data-theme="dark"] .article-content blockquote,
-[data-theme="dark"] .content blockquote,
-[data-theme="dark"] .markdown-body blockquote,
-[data-theme="dark"] .markdown-content blockquote,
-[data-theme="dark"] .post-content blockquote,
-[data-theme="dark"] .article-content blockquote,
-[data-theme="dark"] .markdown-body blockquote,
-[data-theme="dark"] .markdown-content blockquote,
-[data-theme="dark"] article blockquote,
-[data-theme="dark"] blockquote {
-  background: rgba(40, 40, 40, 0.4) !important;
-  backdrop-filter: blur(8px) !important;
-  border: 1px solid rgba(60, 60, 60, 0.6) !important;
-  color: rgba(220, 220, 220, 0.95) !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+/* 浅色模式悬停 */
+body:not([data-theme="dark"]) .post-content blockquote:hover {
+  background: linear-gradient(135deg, #f0f1f3, #e9eaed) !important;
+  border-left-color: #9ca3af !important;
+  box-shadow: 
+    0 1px 3px rgba(0,0,0,0.04),
+    0 6px 16px rgba(0,0,0,0.06) !important;
+  transform: translateY(-2px) scale(1.002) !important;
 }
 
-/* 深色模式悬停效果 */
-[data-theme="dark"] .post-content blockquote:hover,
-[data-theme="dark"] .article-content blockquote:hover,
-[data-theme="dark"] .content blockquote:hover,
-[data-theme="dark"] .markdown-body blockquote:hover,
-[data-theme="dark"] .markdown-content blockquote:hover,
-[data-theme="dark"] .post-content blockquote:hover,
-[data-theme="dark"] .article-content blockquote:hover,
-[data-theme="dark"] .markdown-body blockquote:hover,
-[data-theme="dark"] .markdown-content blockquote:hover,
-[data-theme="dark"] article blockquote:hover,
-[data-theme="dark"] blockquote:hover {
-  background: rgba(45, 45, 45, 0.6) !important;
-  border-color: rgba(70, 70, 70, 0.8) !important;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3) !important;
-  transform: translateY(-2px) !important;
+/* ========================
+   深色模式
+   ======================== */
+[data-theme="dark"] .post-content blockquote {
+  background: linear-gradient(135deg, #1f2937, #111827) !important;
+  border-left: 4px solid #4b5563 !important;
+  border-radius: 10px !important;
+  color: #e5e7eb !important;
+  padding: 1.8em 2.2em !important;
+  margin: 2.2em 0 !important;
+  position: relative !important;
+  box-shadow: 
+    0 1px 2px rgba(0,0,0,0.3),
+    0 4px 12px rgba(0,0,0,0.25) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  overflow: hidden !important;
 }
 
-/* 引用符号装饰 */
-.post-content blockquote::before,
-.article-content blockquote::before,
-.content blockquote::before,
-.markdown-body blockquote::before,
-.markdown-content blockquote::before,
-.post-content blockquote::before,
-.article-content blockquote::before,
-.markdown-body blockquote::before,
-.markdown-content blockquote::before,
-article blockquote::before,
-blockquote::before {
-  content: """ !important;
+/* 深色模式装饰线 */
+[data-theme="dark"] .post-content blockquote::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 4px !important;
+  height: 100% !important;
+  background: linear-gradient(to bottom, 
+    rgba(255,255,255,0.15) 0%,
+    rgba(255,255,255,0.08) 50%,
+    rgba(255,255,255,0.15) 100%) !important;
+  opacity: 0.5 !important;
+}
+
+/* 深色模式悬停 */
+[data-theme="dark"] .post-content blockquote:hover {
+  background: linear-gradient(135deg, #374151, #1f2937) !important;
+  border-left-color: #6b7280 !important;
+  box-shadow: 
+    0 1px 3px rgba(0,0,0,0.4),
+    0 6px 16px rgba(0,0,0,0.35) !important;
+  transform: translateY(-2px) scale(1.002) !important;
+}
+
+/* ========================
+   引用标志
+   ======================== */
+.post-content blockquote p:first-child::before {
+  content: "“" !important;
   position: absolute !important;
   top: 0.8em !important;
-  left: 1em !important;
-  font-size: 4em !important;
-  font-family: 'Georgia', serif !important;
-  opacity: 0.08 !important;
-  color: inherit !important;
+  left: 0.6em !important;
+  font-size: 3.5em !important;
+  font-family: Georgia, serif !important;
   line-height: 1 !important;
-  z-index: -1 !important;
-  transition: opacity 0.4s ease !important;
+  z-index: 0 !important;
 }
 
-/* 深色模式下引用符号调整 */
-[data-theme="dark"] .post-content blockquote::before,
-[data-theme="dark"] .article-content blockquote::before,
-[data-theme="dark"] .content blockquote::before,
-[data-theme="dark"] .markdown-body blockquote::before,
-[data-theme="dark"] .markdown-content blockquote::before,
-[data-theme="dark"] .post-content blockquote::before,
-[data-theme="dark"] .article-content blockquote::before,
-[data-theme="dark"] .markdown-body blockquote::before,
-[data-theme="dark"] .markdown-content blockquote::before,
-[data-theme="dark"] article blockquote::before,
-[data-theme="dark"] blockquote::before {
-  opacity: 0.05 !important;
+body:not([data-theme="dark"]) .post-content blockquote p:first-child::before {
+  color: rgba(0,0,0,0.08) !important;
 }
 
-/* 悬停时引用符号增强 */
-.post-content blockquote:hover::before,
-.article-content blockquote:hover::before,
-.content blockquote:hover::before,
-.markdown-body blockquote:hover::before,
-.markdown-content blockquote:hover::before,
-.post-content blockquote:hover::before,
-.article-content blockquote:hover::before,
-.markdown-body blockquote:hover::before,
-.markdown-content blockquote:hover::before,
-article blockquote:hover::before,
-blockquote:hover::before {
-  opacity: 0.12 !important;
+[data-theme="dark"] .post-content blockquote p:first-child::before {
+  color: rgba(255,255,255,0.05) !important;
 }
 
-/* 移除 Redefine 主题可能的额外样式 */
-body .post-content blockquote *,
-body .article-content blockquote *,
-body .content blockquote *,
-body .markdown-body blockquote *,
-body .markdown-content blockquote *,
-.post-content blockquote *,
-.article-content blockquote *,
-.markdown-body blockquote *,
-.markdown-content blockquote *,
-article blockquote *,
-blockquote * {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
+/* ========================
+   内容样式优化
+   ======================== */
+.post-content blockquote p {
+  position: relative !important;
+  z-index: 1 !important;
+  margin: 0.6em 0 !important;
+  padding: 0 !important;
+  line-height: 1.75 !important;
+  font-weight: 400 !important;
+}
+
+.post-content blockquote p:first-child {
+  margin-top: 0 !important;
+}
+
+.post-content blockquote p:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* 链接样式 */
+.post-content blockquote a {
+  color: inherit !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid rgba(156, 163, 175, 0.4) !important;
+  padding-bottom: 1px !important;
+  transition: border-color 0.2s ease !important;
+}
+
+body:not([data-theme="dark"]) .post-content blockquote a:hover {
+  border-bottom-color: #6b7280 !important;
+}
+
+[data-theme="dark"] .post-content blockquote a:hover {
+  border-bottom-color: #9ca3af !important;
+}
+
+/* 强调文字 */
+.post-content blockquote strong,
+.post-content blockquote b {
+  font-weight: 600 !important;
+  color: inherit !important;
+}
+
+/* ========================
+   响应式调整
+   ======================== */
+@media (max-width: 768px) {
+  .post-content blockquote {
+    padding: 1.4em 1.8em !important;
+    margin: 1.8em 0 !important;
+    border-radius: 8px !important;
+  }
+  
+  .post-content blockquote p:first-child::before {
+    font-size: 2.8em !important;
+    top: 0.6em !important;
+    left: 0.4em !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .post-content blockquote {
+    padding: 1.2em 1.5em !important;
+    margin: 1.5em 0 !important;
+    border-radius: 6px !important;
+  }
+  
+  .post-content blockquote p:first-child::before {
+    font-size: 2.2em !important;
+  }
 }
