@@ -1,5 +1,5 @@
 /* =========================================================
-   📄 纸质感手写风 - Redefine 主题适配版
+   ✨ 极简高级感 - Redefine 主题适配版
    ========================================================= */
 
 /* 基础选择器 - 覆盖 Redefine 主题 */
@@ -16,33 +16,23 @@ article blockquote,
 blockquote {
   position: relative !important;
   overflow: hidden !important;
-  margin: 2.5em 0 !important;
-  padding: 2.2em 2.5em !important;
-  border-radius: 2px 12px 12px 2px !important;
+  margin: 2.2em 0 !important;
+  padding: 1.8em 2em !important;
+  border-radius: 12px !important;
   border: none !important;
   border-left: none !important;
   box-shadow: none !important;
   z-index: 1 !important;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  font-family: 'Georgia', 'Songti SC', 'SimSun', 'STKaiti', 'KaiTi', serif !important;
-  line-height: 1.85 !important;
-  font-size: 1.08em !important;
-  font-style: italic !important;
-  letter-spacing: 0.02em !important;
-  
-  /* 移除 Redefine 可能的所有边框/阴影 */
-  border-left-width: 0 !important;
-  border-left-color: transparent !important;
-  border-right: none !important;
-  border-top: none !important;
-  border-bottom: none !important;
+  font-family: inherit !important;
+  line-height: 1.7 !important;
+  font-size: 1.05em !important;
 }
 
-/* =========================
-   ☀️ 浅色模式 (默认 - 米黄色纸张)
-   ========================= */
+/* ===== 浅色模式 (默认) ===== */
 body:not([data-theme="dark"]) .post-content blockquote,
 body:not([data-theme="dark"]) .article-content blockquote,
+body:not([data-theme="dark"]) .content blockquote,
 body:not([data-theme="dark"]) .markdown-body blockquote,
 body:not([data-theme="dark"]) .markdown-content blockquote,
 body:not([data-theme="dark"]) .post-content blockquote,
@@ -51,80 +41,35 @@ body:not([data-theme="dark"]) .markdown-body blockquote,
 body:not([data-theme="dark"]) .markdown-content blockquote,
 body:not([data-theme="dark"]) article blockquote,
 body:not([data-theme="dark"]) blockquote {
-  /* 纸张纹理背景 - 米黄色仿古纸 */
-  background: 
-    /* 主色调 - 暖米色 */
-    linear-gradient(135deg, 
-      rgba(253, 247, 235, 0.98) 0%, 
-      rgba(250, 242, 225, 0.98) 100%
-    ),
-    /* 纸张纤维纹理 */
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='paper-noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23paper-noise)' opacity='0.12'/%3E%3C/svg%3E"),
-    /* 水印般的墨迹 */
-    radial-gradient(circle at 20% 30%, rgba(169, 145, 114, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 80% 70%, rgba(139, 115, 85, 0.02) 0%, transparent 50%) !important;
-  
-  /* 墨色文字 */
-  color: #3a3429 !important;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6) !important;
-  
-  /* 深色边框 - 仿墨水浸染 */
-  border-left: 6px solid #b5945c !important;
-  border-right: 1px solid rgba(181, 148, 92, 0.2) !important;
-  border-top: 1px solid rgba(181, 148, 92, 0.2) !important;
-  border-bottom: 1px solid rgba(181, 148, 92, 0.2) !important;
-  
-  /* 多层阴影创造立体感 */
-  box-shadow: 
-    /* 柔和外阴影 */
-    0 4px 20px rgba(139, 115, 85, 0.12),
-    0 1px 3px rgba(139, 115, 85, 0.08),
-    /* 内部高光 - 纸张质感 */
-    inset 0 1px 0 rgba(255, 255, 255, 0.7),
-    inset 0 0 30px rgba(255, 255, 255, 0.4),
-    /* 边缘磨损效果 */
-    inset 2px 0 0 rgba(181, 148, 92, 0.1) !important;
+  background: rgba(245, 245, 245, 0.6) !important;
+  backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(230, 230, 230, 0.8) !important;
+  color: rgba(60, 60, 60, 0.9) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
 }
 
-/* 浅色模式 - 纸张边缘的墨迹渲染效果 */
-body:not([data-theme="dark"]) .post-content blockquote::before {
-  content: "" !important;
-  position: absolute !important;
-  top: 0 !important;
-  right: 0 !important;
-  width: 40% !important;
-  height: 100% !important;
-  background: linear-gradient(
-    90deg, 
-    transparent 0%, 
-    rgba(181, 148, 92, 0.08) 30%, 
-    rgba(139, 115, 85, 0.12) 70%
-  ) !important;
-  pointer-events: none !important;
-  z-index: 0 !important;
-  border-radius: 0 12px 12px 0 !important;
+/* 悬停效果 */
+body:not([data-theme="dark"]) .post-content blockquote:hover,
+body:not([data-theme="dark"]) .article-content blockquote:hover,
+body:not([data-theme="dark"]) .content blockquote:hover,
+body:not([data-theme="dark"]) .markdown-body blockquote:hover,
+body:not([data-theme="dark"]) .markdown-content blockquote:hover,
+body:not([data-theme="dark"]) .post-content blockquote:hover,
+body:not([data-theme="dark"]) .article-content blockquote:hover,
+body:not([data-theme="dark"]) .markdown-body blockquote:hover,
+body:not([data-theme="dark"]) .markdown-content blockquote:hover,
+body:not([data-theme="dark"]) article blockquote:hover,
+body:not([data-theme="dark"]) blockquote:hover {
+  background: rgba(240, , 240, 0.8) !important;
+ 240 border-color: rgba(220, 220, 220, 0.9) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05) !important;
+  transform: translateY(-2px) !important;
 }
 
-/* 浅色模式 - 纸张折角效果 */
-body:not([data-theme="dark"]) .post-content blockquote::after {
-  content: "" !important;
-  position: absolute !important;
-  bottom: 15px !important;
-  right: 15px !important;
-  width: 40px !important;
-  height: 40px !important;
-  background: linear-gradient(135deg, transparent 50%, rgba(181, 148, 92, 0.15) 50%) !important;
-  border-radius: 0 0 8px 0 !important;
-  pointer-events: none !important;
-  z-index: 1 !important;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.05) !important;
-}
-
-/* =========================
-   🌙 深色模式 (羊皮纸/牛皮纸)
-   ========================= */
+/* ===== 深色模式 ===== */
 [data-theme="dark"] .post-content blockquote,
 [data-theme="dark"] .article-content blockquote,
+[data-theme="dark"] .content blockquote,
 [data-theme="dark"] .markdown-body blockquote,
 [data-theme="dark"] .markdown-content blockquote,
 [data-theme="dark"] .post-content blockquote,
@@ -133,375 +78,99 @@ body:not([data-theme="dark"]) .post-content blockquote::after {
 [data-theme="dark"] .markdown-content blockquote,
 [data-theme="dark"] article blockquote,
 [data-theme="dark"] blockquote {
-  /* 羊皮纸纹理背景 - 深棕色 */
-  background: 
-    /* 主色调 - 牛皮纸色 */
-    linear-gradient(135deg, 
-      rgba(40, 32, 24, 0.95) 0%, 
-      rgba(50, 40, 30, 0.95) 100%
-    ),
-    /* 更明显的纸张纹理 */
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='parchment-noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23parchment-noise)' opacity='0.2'/%3E%3C/svg%3E"),
-    /* 仿旧墨迹 */
-    radial-gradient(circle at 10% 20%, rgba(120, 90, 60, 0.1) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(100, 70, 40, 0.08) 0%, transparent 40%) !important;
-  
-  /* 暖色文字 - 仿古铜色 */
-  color: #e8d8c0 !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
-  
-  /* 暗金色边框 */
-  border-left: 6px solid #a0785a !important;
-  border-right: 1px solid rgba(160, 120, 90, 0.3) !important;
-  border-top: 1px solid rgba(160, 120, 90, 0.3) !important;
-  border-bottom: 1px solid rgba(160, 120, 90, 0.3) !important;
-  
-  /* 深色模式阴影 */
-  box-shadow: 
-    /* 外阴影 */
-    0 4px 20px rgba(0, 0, 0, 0.4),
-    0 1px 3px rgba(0, 0, 0, 0.3),
-    /* 内部高光 */
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    inset 0 0 30px rgba(255, 255, 255, 0.05),
-    /* 左侧边缘光 */
-    inset 2px 0 0 rgba(160, 120, 90, 0.2) !important;
+  background: rgba(40, 40, 40, 0.4) !important;
+  backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(60, 60, 60, 0.6) !important;
+  color: rgba(220, 220, 220, 0.95) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
 }
 
-/* 深色模式 - 边缘墨迹渲染 */
-[data-theme="dark"] .post-content blockquote::before {
-  content: "" !important;
-  position: absolute !important;
-  top: 0 !important;
-  right: 0 !important;
-  width: 40% !important;
-  height: 100% !important;
-  background: linear-gradient(
-    90deg, 
-    transparent 0%, 
-    rgba(120, 90, 60, 0.15) 30%, 
-    rgba(100, 70, 40, 0.2) 70%
-  ) !important;
-  pointer-events: none !important;
-  z-index: 0 !important;
-  border-radius: 0 12px 12px 0 !important;
-}
-
-/* 深色模式 - 暗色折角 */
-[data-theme="dark"] .post-content blockquote::after {
-  content: "" !important;
-  position: absolute !important;
-  bottom: 15px !important;
-  right: 15px !important;
-  width: 40px !important;
-  height: 40px !important;
-  background: linear-gradient(135deg, transparent 50%, rgba(120, 90, 60, 0.3) 50%) !important;
-  border-radius: 0 0 8px 0 !important;
-  pointer-events: none !important;
-  z-index: 1 !important;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2) !important;
-}
-
-/* =========================
-   📖 引号装饰 (复古手写风格)
-   ========================= */
-.post-content blockquote p:first-child::before,
-.article-content blockquote p:first-child::before,
-.markdown-body blockquote p:first-child::before {
-  content: "「" !important;
-  position: absolute !important;
-  top: 5px !important;
-  left: 20px !important;
-  font-size: 4.5em !important;
-  font-weight: 300 !important;
-  line-height: 1 !important;
-  pointer-events: none !important;
-  z-index: 0 !important;
-  font-family: 'SimSun', 'STKaiti', 'KaiTi', serif !important;
-  font-style: normal !important;
-}
-
-.post-content blockquote p:last-child::after,
-.article-content blockquote p:last-child::after,
-.markdown-body blockquote p:last-child::after {
-  content: "」" !important;
-  position: absolute !important;
-  bottom: -20px !important;
-  right: 20px !important;
-  font-size: 4.5em !important;
-  font-weight: 300 !important;
-  line-height: 1 !important;
-  pointer-events: none !important;
-  z-index: 0 !important;
-  font-family: 'SimSun', 'STKaiti', 'KaiTi', serif !important;
-  font-style: normal !important;
-}
-
-/* 浅色模式引号颜色 */
-body:not([data-theme="dark"]) .post-content blockquote p:first-child::before,
-body:not([data-theme="dark"]) .post-content blockquote p:last-child::after {
-  color: rgba(181, 148, 92, 0.25) !important;
-  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5) !important;
-}
-
-/* 深色模式引号颜色 */
-[data-theme="dark"] .post-content blockquote p:first-child::before,
-[data-theme="dark"] .post-content blockquote p:last-child::after {
-  color: rgba(160, 120, 90, 0.3) !important;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5) !important;
-}
-
-/* =========================
-   ✍️ 内容区域特殊样式
-   ========================= */
-.post-content blockquote p,
-.article-content blockquote p,
-.markdown-body blockquote p {
-  position: relative !important;
-  z-index: 2 !important;
-  margin: 1.2em 0 !important;
-  padding: 0 !important;
-  font-style: italic !important;
-  font-weight: 400 !important;
-  line-height: 1.9 !important;
-  text-indent: 2em !important; /* 首行缩进 */
-}
-
-/* 链接样式 - 仿下划线标注 */
-.post-content blockquote a,
-.article-content blockquote a,
-.markdown-body blockquote a {
-  color: inherit !important;
-  text-decoration: none !important;
-  border-bottom: 1px dashed rgba(181, 148, 92, 0.5) !important;
-  padding-bottom: 1px !important;
-  transition: all 0.2s ease !important;
-  font-weight: normal !important;
-}
-
-/* 浅色模式链接 hover */
-body:not([data-theme="dark"]) .post-content blockquote a:hover,
-body:not([data-theme="dark"]) .article-content blockquote a:hover,
-body:not([data-theme="dark"]) .markdown-body blockquote a:hover {
-  border-bottom: 1px solid #b5945c !important;
-  color: #8b7355 !important;
-  text-shadow: 0 0 5px rgba(181, 148, 92, 0.2) !important;
-}
-
-/* 深色模式链接 hover */
-[data-theme="dark"] .post-content blockquote a:hover,
-[data-theme="dark"] .article-content blockquote a:hover,
-[data-theme="dark"] .markdown-body blockquote a:hover {
-  border-bottom: 1px solid #a0785a !important;
-  color: #d4b483 !important;
-  text-shadow: 0 0 5px rgba(160, 120, 90, 0.3) !important;
-}
-
-/* 强调文字 */
-.post-content blockquote strong,
-.post-content blockquote b,
-.article-content blockquote strong,
-.article-content blockquote b,
-.markdown-body blockquote strong,
-.markdown-body blockquote b {
-  font-weight: 600 !important;
-  color: inherit !important;
-  font-style: italic !important;
-}
-
-/* 斜体强化 */
-.post-content blockquote em,
-.article-content blockquote em,
-.markdown-body blockquote em {
-  font-style: italic !important;
-  color: inherit !important;
-}
-
-/* 列表样式 */
-.post-content blockquote ul,
-.post-content blockquote ol,
-.article-content blockquote ul,
-.article-content blockquote ol,
-.markdown-body blockquote ul,
-.markdown-body blockquote ol {
-  padding-left: 2.5em !important;
-  margin: 1.2em 0 !important;
-  font-style: italic !important;
-}
-
-.post-content blockquote li,
-.article-content blockquote li,
-.markdown-body blockquote li {
-  margin: 0.5em 0 !important;
-  line-height: 1.8 !important;
-}
-
-/* 列表标记 - 仿手写点 */
-.post-content blockquote ul li::before,
-.article-content blockquote ul li::before,
-.markdown-body blockquote ul li::before {
-  content: "·" !important;
-  margin-left: -1.2em !important;
-  margin-right: 0.8em !important;
-  color: rgba(181, 148, 92, 0.6) !important;
-  font-size: 1.5em !important;
-  vertical-align: middle !important;
-}
-
-[data-theme="dark"] .post-content blockquote ul li::before,
-[data-theme="dark"] .article-content blockquote ul li::before,
-[data-theme="dark"] .markdown-body blockquote ul li::before {
-  color: rgba(160, 120, 90, 0.6) !important;
-}
-
-/* =========================
-   🎪 悬停效果 (细腻纸张感)
-   ========================= */
-.post-content blockquote:hover,
-.article-content blockquote:hover,
-.markdown-body blockquote:hover {
-  transform: translateY(-2px) !important;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
-}
-
-/* 浅色模式悬停 */
-body:not([data-theme="dark"]) .post-content blockquote:hover,
-body:not([data-theme="dark"]) .article-content blockquote:hover,
-body:not([data-theme="dark"]) .markdown-body blockquote:hover {
-  box-shadow: 
-    0 8px 30px rgba(139, 115, 85, 0.2),
-    0 3px 8px rgba(139, 115, 85, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8),
-    inset 0 0 40px rgba(255, 255, 255, 0.5),
-    inset 2px 0 0 rgba(181, 148, 92, 0.15) !important;
-  border-left: 6px solid #d4b483 !important;
-}
-
-/* 深色模式悬停 */
+/* 深色模式悬停效果 */
 [data-theme="dark"] .post-content blockquote:hover,
 [data-theme="dark"] .article-content blockquote:hover,
-[data-theme="dark"] .markdown-body blockquote:hover {
-  box-shadow: 
-    0 8px 30px rgba(0, 0, 0, 0.6),
-    0 3px 8px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 0 40px rgba(255, 255, 255, 0.08),
-    inset 2px 0 0 rgba(160, 120, 90, 0.3) !important;
-  border-left: 6px solid #c9a87a !important;
+[data-theme="dark"] .content blockquote:hover,
+[data-theme="dark"] .markdown-body blockquote:hover,
+[data-theme="dark"] .markdown-content blockquote:hover,
+[data-theme="dark"] .post-content blockquote:hover,
+[data-theme="dark"] .article-content blockquote:hover,
+[data-theme="dark"] .markdown-body blockquote:hover,
+[data-theme="dark"] .markdown-content blockquote:hover,
+[data-theme="dark"] article blockquote:hover,
+[data-theme="dark"] blockquote:hover {
+  background: rgba(45, 45, 45, 0.6) !important;
+  border-color: rgba(70, 70, 70, 0.8) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3) !important;
+  transform: translateY(-2px) !important;
 }
 
-/* 悬停时折角加深 */
-.post-content blockquote:hover::after {
-  opacity: 0.8 !important;
-  transform: scale(1.1) !important;
-  transition: all 0.3s ease !important;
+/* 引用符号装饰 */
+.post-content blockquote::before,
+.article-content blockquote::before,
+.content blockquote::before,
+.markdown-body blockquote::before,
+.markdown-content blockquote::before,
+.post-content blockquote::before,
+.article-content blockquote::before,
+.markdown-body blockquote::before,
+.markdown-content blockquote::before,
+article blockquote::before,
+blockquote::before {
+  content: """ !important;
+  position: absolute !important;
+  top: 0.8em !important;
+  left: 1em !important;
+  font-size: 4em !important;
+  font-family: 'Georgia', serif !important;
+  opacity: 0.08 !important;
+  color: inherit !important;
+  line-height: 1 !important;
+  z-index: -1 !important;
+  transition: opacity 0.4s ease !important;
 }
 
-/* =========================
-   📱 响应式调整
-   ========================= */
-@media (max-width: 768px) {
-  .post-content blockquote,
-  .article-content blockquote,
-  .markdown-body blockquote {
-    margin: 2em 0 !important;
-    padding: 1.8em 2em !important;
-    border-radius: 2px 10px 10px 2px !important;
-    border-left-width: 5px !important;
-  }
-  
-  .post-content blockquote p:first-child::before,
-  .article-content blockquote p:first-child::before,
-  .markdown-body blockquote p:first-child::before {
-    font-size: 3.5em !important;
-    left: 15px !important;
-    top: 8px !important;
-  }
-  
-  .post-content blockquote p:last-child::after,
-  .article-content blockquote p:last-child::after,
-  .markdown-body blockquote p:last-child::after {
-    font-size: 3.5em !important;
-    right: 15px !important;
-    bottom: -15px !important;
-  }
-  
-  .post-content blockquote p,
-  .article-content blockquote p,
-  .markdown-body blockquote p {
-    text-indent: 1.5em !important;
-    line-height: 1.8 !important;
-  }
-  
-  .post-content blockquote::after,
-  .article-content blockquote::after,
-  .markdown-body blockquote::after {
-    width: 30px !important;
-    height: 30px !important;
-    bottom: 10px !important;
-    right: 10px !important;
-  }
+/* 深色模式下引用符号调整 */
+[data-theme="dark"] .post-content blockquote::before,
+[data-theme="dark"] .article-content blockquote::before,
+[data-theme="dark"] .content blockquote::before,
+[data-theme="dark"] .markdown-body blockquote::before,
+[data-theme="dark"] .markdown-content blockquote::before,
+[data-theme="dark"] .post-content blockquote::before,
+[data-theme="dark"] .article-content blockquote::before,
+[data-theme="dark"] .markdown-body blockquote::before,
+[data-theme="dark"] .markdown-content blockquote::before,
+[data-theme="dark"] article blockquote::before,
+[data-theme="dark"] blockquote::before {
+  opacity: 0.05 !important;
 }
 
-@media (max-width: 480px) {
-  .post-content blockquote,
-  .article-content blockquote,
-  .markdown-body blockquote {
-    padding: 1.5em 1.8em !important;
-    border-radius: 2px 8px 8px 2px !important;
-    border-left-width: 4px !important;
-  }
-  
-  .post-content blockquote p:first-child::before,
-  .article-content blockquote p:first-child::before,
-  .markdown-body blockquote p:first-child::before {
-    font-size: 3em !important;
-    left: 12px !important;
-    top: 10px !important;
-  }
-  
-  .post-content blockquote p:last-child::after,
-  .article-content blockquote p:last-child::after,
-  .markdown-body blockquote p:last-child::after {
-    font-size: 3em !important;
-    right: 12px !important;
-    bottom: -12px !important;
-  }
-  
-  .post-content blockquote p,
-  .article-content blockquote p,
-  .markdown-body blockquote p {
-    text-indent: 1.2em !important;
-    font-size: 1em !important;
-  }
-  
-  .post-content blockquote ul,
-  .post-content blockquote ol,
-  .article-content blockquote ul,
-  .article-content blockquote ol,
-  .markdown-body blockquote ul,
-  .markdown-body blockquote ol {
-    padding-left: 1.8em !important;
-  }
+/* 悬停时引用符号增强 */
+.post-content blockquote:hover::before,
+.article-content blockquote:hover::before,
+.content blockquote:hover::before,
+.markdown-body blockquote:hover::before,
+.markdown-content blockquote:hover::before,
+.post-content blockquote:hover::before,
+.article-content blockquote:hover::before,
+.markdown-body blockquote:hover::before,
+.markdown-content blockquote:hover::before,
+article blockquote:hover::before,
+blockquote:hover::before {
+  opacity: 0.12 !important;
 }
 
-/* =========================
-   🎯 清除可能冲突的样式
-   ========================= */
-/* 确保没有其他边框干扰 */
+/* 移除 Redefine 主题可能的额外样式 */
+body .post-content blockquote *,
+body .article-content blockquote *,
+body .content blockquote *,
+body .markdown-body blockquote *,
+body .markdown-content blockquote *,
 .post-content blockquote *,
 .article-content blockquote *,
-.markdown-body blockquote * {
-  max-width: 100% !important;
-  overflow-wrap: break-word !important;
-  font-style: inherit !important;
-}
-
-/* 修复可能的内容溢出 */
-.post-content blockquote,
-.article-content blockquote,
-.markdown-body blockquote {
-  word-wrap: break-word !important;
-  overflow-wrap: break-word !important;
-  hyphens: auto !important;
+.markdown-body blockquote *,
+.markdown-content blockquote *,
+article blockquote *,
+blockquote * {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
