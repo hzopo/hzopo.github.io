@@ -1,80 +1,164 @@
-.music-pro {
-  max-width: 420px;
-  margin: 26px auto;
-  padding: 16px 18px;
+/* =========================================================
+   🍎 Apple Glass Article UI Pack for Redefine
+   ========================================================= */
 
-  border-radius: 16px;
 
-  /* 🌫️ 统一深色玻璃（核心） */
-  background: rgba(15, 23, 42, 0.45);
+/* =========================
+   🌫️ 全局正文优化
+   ========================= */
 
+.post-content {
+  line-height: 1.85;
+  letter-spacing: 0.2px;
+}
+
+.post-content p {
+  margin: 1.2em 0;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+
+/* =========================
+   🧊 引用框（核心玻璃拟态）
+   ========================= */
+
+.post-content blockquote {
+  position: relative;
+  margin: 1.6em 0;
+  padding: 18px 22px;
+
+  background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 
-  border: 1px solid rgba(148, 163, 184, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
 
   box-shadow:
-    0 12px 30px rgba(0, 0, 0, 0.35);
+    0 10px 30px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 
-  text-align: center;
-
-  position: relative;
-  overflow: hidden;
+  color: rgba(255, 255, 255, 0.85);
 
   transition: all 0.25s ease;
 }
 
-/* 🎧 标题 */
-.music-title {
-  font-size: 13px;
-  font-weight: 600;
-
-  color: rgba(226, 232, 240, 0.92);
-
-  margin-bottom: 10px;
-  letter-spacing: 0.3px;
+.post-content blockquote:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 14px 45px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
-/* 🎵 iframe */
-.music-frame {
-  width: 100%;
-  height: 86px;
+/* 左侧渐变条（苹果风细节） */
+.post-content blockquote::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  bottom: 12px;
+  width: 3px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #7aa2ff, #a78bfa);
+}
 
-  border: none;
-  border-radius: 12px;
 
-  box-shadow:
-    0 6px 18px rgba(0, 0, 0, 0.35);
+/* =========================
+   🌈 渐变强调文字
+   ========================= */
 
+.grad-text {
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: 600;
+}
+
+
+/* =========================
+   🧊 重点内容卡片
+   ========================= */
+
+.glow-block {
+  margin: 1.2em 0;
+  padding: 16px 18px;
+
+  border-radius: 14px;
+  background: rgba(20, 20, 30, 0.55);
+  border: 1px solid rgba(120, 140, 255, 0.18);
+
+  box-shadow: 0 0 25px rgba(120, 140, 255, 0.12);
+
+  transition: 0.25s ease;
+}
+
+.glow-block:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 40px rgba(120, 140, 255, 0.25);
+}
+
+
+/* =========================
+   📖 标题层级优化
+   ========================= */
+
+.post-content h1,
+.post-content h2,
+.post-content h3 {
+  letter-spacing: 0.3px;
+  font-weight: 600;
+}
+
+
+/* =========================
+   🌫️ 图片圆角 + 悬浮
+   ========================= */
+
+.post-content img {
+  border-radius: 14px;
+  transition: 0.3s ease;
+}
+
+.post-content img:hover {
+  transform: scale(1.01);
+}
+
+
+/* =========================
+   💻 代码块 Apple 风
+   ========================= */
+
+.post-content pre {
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
   overflow: hidden;
 }
 
-/* 🧊 底部提示 */
-.music-tip {
-  margin-top: 10px;
-  font-size: 12px;
-
-  color: rgba(148, 163, 184, 0.85);
+.post-content code {
+  border-radius: 6px;
 }
 
-/* ✨ hover（轻微浮起） */
-.music-pro:hover {
-  transform: translateY(-2px);
-  box-shadow:
-    0 16px 38px rgba(0, 0, 0, 0.45);
+
+/* =========================
+   🌙 深色模式强化（重点）
+   ========================= */
+
+html.dark .post-content blockquote {
+  background: rgba(20, 20, 30, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(240, 240, 245, 0.88);
 }
 
-/* 🌈 顶部微光（低调版本） */
-.music-pro::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
+html.dark .glow-block {
+  background: rgba(30, 30, 45, 0.55);
+}
 
-  height: 2px;
-  width: 100%;
 
-  background: linear-gradient(90deg, #38bdf8, #a78bfa, #38bdf8);
+/* =========================
+   ✨ 选中文本效果
+   ========================= */
 
-  opacity: 0.35;
+::selection {
+  background: rgba(120, 140, 255, 0.35);
+  color: #fff;
 }
