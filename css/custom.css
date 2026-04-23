@@ -1,10 +1,11 @@
 /* =========================================================
-   🍎 Apple Glass Article UI Pack for Redefine
+   🍎 Redefine Safe Glass UI Pack
+   Fix: footer conflict / PJAX safe / no global break
    ========================================================= */
 
 
 /* =========================
-   🌫️ 全局正文优化
+   🌫️ 基础文章排版（安全版）
    ========================= */
 
 .post-content {
@@ -12,14 +13,15 @@
   letter-spacing: 0.2px;
 }
 
+/* ⚠️ 不要全局改 p 颜色（避免 footer / UI 冲突） */
 .post-content p {
   margin: 1.2em 0;
-  color: rgba(255, 255, 255, 0.85);
+  color: inherit;
 }
 
 
 /* =========================
-   🧊 引用框（核心玻璃拟态）
+   🧊 苹果玻璃引用框（核心）
    ========================= */
 
 .post-content blockquote {
@@ -41,6 +43,9 @@
   color: rgba(255, 255, 255, 0.85);
 
   transition: all 0.25s ease;
+
+  /* 🧠 防止层级污染 */
+  isolation: isolate;
 }
 
 .post-content blockquote:hover {
@@ -50,7 +55,7 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
-/* 左侧渐变条（苹果风细节） */
+/* 左侧苹果渐变条 */
 .post-content blockquote::before {
   content: "";
   position: absolute;
@@ -64,7 +69,7 @@
 
 
 /* =========================
-   🌈 渐变强调文字
+   🌈 渐变文字
    ========================= */
 
 .grad-text {
@@ -76,7 +81,7 @@
 
 
 /* =========================
-   🧊 重点内容卡片
+   🧊 重点卡片
    ========================= */
 
 .glow-block {
@@ -99,19 +104,7 @@
 
 
 /* =========================
-   📖 标题层级优化
-   ========================= */
-
-.post-content h1,
-.post-content h2,
-.post-content h3 {
-  letter-spacing: 0.3px;
-  font-weight: 600;
-}
-
-
-/* =========================
-   🌫️ 图片圆角 + 悬浮
+   🖼️ 图片优化
    ========================= */
 
 .post-content img {
@@ -140,7 +133,7 @@
 
 
 /* =========================
-   🌙 深色模式强化（重点）
+   🌙 深色模式适配
    ========================= */
 
 html.dark .post-content blockquote {
@@ -155,10 +148,30 @@ html.dark .glow-block {
 
 
 /* =========================
-   ✨ 选中文本效果
+   ✨ 选中效果
    ========================= */
 
 ::selection {
   background: rgba(120, 140, 255, 0.35);
   color: #fff;
+}
+
+
+/* =========================
+   🧠 安全层级修复（关键）
+   ========================= */
+
+/* footer 不受影响 */
+#footer,
+footer {
+  position: relative;
+  z-index: 9999;
+}
+
+/* canvas / 粒子层（如果你有） */
+#particle-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
 }
