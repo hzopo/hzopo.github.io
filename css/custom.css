@@ -5,30 +5,32 @@
 
   border-radius: 16px;
 
-  /* 🌫️ 浅色：偏蓝灰玻璃 */
-  background: rgba(248, 250, 252, 0.75);
+  /* 🌫️ 统一深色玻璃（核心） */
+  background: rgba(15, 23, 42, 0.45);
 
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 
-  border: 1px solid rgba(148, 163, 184, 0.25);
+  border: 1px solid rgba(148, 163, 184, 0.15);
 
   box-shadow:
-    0 10px 26px rgba(15, 23, 42, 0.08);
+    0 12px 30px rgba(0, 0, 0, 0.35);
 
   text-align: center;
 
-  transition: all 0.25s ease;
-
   position: relative;
   overflow: hidden;
+
+  transition: all 0.25s ease;
 }
 
-/* 🎧 标题（更深色，提升可读性） */
+/* 🎧 标题 */
 .music-title {
   font-size: 13px;
   font-weight: 600;
-  color: #334155;
+
+  color: rgba(226, 232, 240, 0.92);
+
   margin-bottom: 10px;
   letter-spacing: 0.3px;
 }
@@ -41,45 +43,38 @@
   border: none;
   border-radius: 12px;
 
-  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.35);
+
+  overflow: hidden;
 }
 
-/* 🧊 提示 */
+/* 🧊 底部提示 */
 .music-tip {
   margin-top: 10px;
   font-size: 12px;
-  color: #64748b;
-  opacity: 0.9;
+
+  color: rgba(148, 163, 184, 0.85);
 }
 
-/* ✨ hover */
+/* ✨ hover（轻微浮起） */
 .music-pro:hover {
   transform: translateY(-2px);
   box-shadow:
-    0 14px 34px rgba(15, 23, 42, 0.12);
+    0 16px 38px rgba(0, 0, 0, 0.45);
 }
 
-[data-theme="dark"] .music-pro {
-  background: rgba(30, 41, 59, 0.72);
+/* 🌈 顶部微光（低调版本） */
+.music-pro::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
 
-  border: 1px solid rgba(148, 163, 184, 0.18);
+  height: 2px;
+  width: 100%;
 
-  box-shadow:
-    0 14px 34px rgba(0, 0, 0, 0.55);
-}
+  background: linear-gradient(90deg, #38bdf8, #a78bfa, #38bdf8);
 
-/* 🎧 深色标题（关键：别用纯白） */
-[data-theme="dark"] .music-title {
-  color: #e2e8f0;
-  font-weight: 600;
-}
-
-/* 🧊 深色提示（弱一点但可读） */
-[data-theme="dark"] .music-tip {
-  color: #94a3b8;
-}
-
-/* 🎵 iframe 稍微增强对比 */
-[data-theme="dark"] .music-frame {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+  opacity: 0.35;
 }
