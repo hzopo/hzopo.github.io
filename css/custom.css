@@ -1,130 +1,69 @@
-/* =========================
-   ULTRA GLASS QUOTE SYSTEM
-   iOS Liquid Glass + Glow + Flow Light
-   ========================= */
-
 .post-content blockquote,
 .post blockquote,
 .markdown-body blockquote,
 article blockquote,
 blockquote {
   position: relative;
+  overflow: visible !important;
+
   margin: 1.6em 0;
-  padding: 1.3em 1.6em 1.3em 1.8em;
+  padding: 1.3em 1.6em;
 
-  /* 🧊 iOS液态玻璃核心 */
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(18px) saturate(160%);
-  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  /* 🔥 关键：提高玻璃可见度 */
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
 
-  border-radius: 16px;
+  border-radius: 18px;
 
-  /* 透明玻璃边框 */
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 
-  /* 🌊 柔光阴影层 */
   box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.25),
+    0 20px 60px rgba(0, 0, 0, 0.35),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
 
-  color: rgba(255, 255, 255, 0.88);
-
-  overflow: hidden;
-
-  transition: all 0.35s ease;
-}
-
-/* =========================
-   🌈 动态光晕底层（漂浮光斑）
-   ========================= */
-.post-content blockquote::before {
-  content: "";
-  position: absolute;
-  inset: -40%;
-  background: radial-gradient(circle at 30% 30%,
-      rgba(56, 189, 248, 0.25),
-      transparent 40%),
-    radial-gradient(circle at 70% 60%,
-      rgba(168, 85, 247, 0.18),
-      transparent 45%),
-    radial-gradient(circle at 50% 80%,
-      rgba(34, 211, 238, 0.12),
-      transparent 50%);
-
-  animation: glowFloat 10s ease-in-out infinite;
-  z-index: 0;
-}
-
-/* 引号装饰层 */
-.post-content blockquote::after {
-  content: "“”";
-  position: absolute;
-  top: -10px;
-  right: 14px;
-  font-size: 3em;
-  color: rgba(125, 211, 252, 0.18);
-  font-family: serif;
   z-index: 1;
 }
 
-/* 内容层级 */
+/* 🌈 强制光晕“在外层扩散” */
+.post-content blockquote::before {
+  content: "";
+  position: absolute;
+  inset: -80px;
+  z-index: 0;
+  pointer-events: none;
+
+  background: radial-gradient(circle at 20% 30%,
+      rgba(56, 189, 248, 0.35),
+      transparent 45%),
+    radial-gradient(circle at 80% 60%,
+      rgba(168, 85, 247, 0.25),
+      transparent 50%),
+    radial-gradient(circle at 50% 90%,
+      rgba(34, 211, 238, 0.18),
+      transparent 55%);
+
+  filter: blur(20px);
+  animation: glowMove 8s ease-in-out infinite;
+}
+
+/* ✨ 内容层必须压上去 */
 .post-content blockquote * {
   position: relative;
   z-index: 2;
 }
 
-/* =========================
-   ✨ hover 流光扫边
-   ========================= */
+/* 🌊 hover 光增强 */
 .post-content blockquote:hover {
-  transform: translateY(-3px) scale(1.01);
-
+  transform: translateY(-4px) scale(1.01);
   box-shadow:
-    0 18px 50px rgba(0, 0, 0, 0.35),
-    0 0 0 1px rgba(125, 211, 252, 0.25),
-    0 0 30px rgba(56, 189, 248, 0.15);
+    0 30px 80px rgba(0, 0, 0, 0.45),
+    0 0 40px rgba(56, 189, 248, 0.25);
 }
 
-/* hover 光线扫过 */
-.post-content blockquote:hover::before {
-  animation-duration: 4s;
-  filter: blur(2px);
-}
-
-/* =========================
-   🔗 链接优化
-   ========================= */
-.post-content blockquote a {
-  color: #7dd3fc;
-  text-decoration: none;
-  border-bottom: 1px dashed rgba(125, 211, 252, 0.4);
-  transition: all 0.2s ease;
-}
-
-.post-content blockquote a:hover {
-  color: #38bdf8;
-  border-bottom: 1px solid rgba(56, 189, 248, 0.9);
-}
-
-/* =========================
-   📜 动画
-   ========================= */
-@keyframes glowFloat {
-  0% {
-    transform: translate3d(-2%, -2%, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(2%, 3%, 0) scale(1.05);
-  }
-  100% {
-    transform: translate3d(-2%, -2%, 0) scale(1);
-  }
-}
-
-/* =========================
-   🌙 深色模式增强
-   ========================= */
-[data-theme="dark"] .post-content blockquote {
-  background: rgba(20, 20, 20, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+/* 🌈 动态光流 */
+@keyframes glowMove {
+  0% { transform: translate(-2%, -2%) scale(1); }
+  50% { transform: translate(3%, 2%) scale(1.1); }
+  100% { transform: translate(-2%, -2%) scale(1); }
 }
