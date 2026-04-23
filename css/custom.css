@@ -1,0 +1,104 @@
+/* =========================
+   Redefine Ultra Quote System
+   ========================= */
+
+.post-content blockquote {
+  position: relative;
+  margin: 1.5em 0;
+  padding: 1.2em 1.4em 1.2em 1.6em;
+
+  /* 玻璃底 */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  /* 左侧强调条 */
+  border-left: 4px solid rgba(125, 211, 252, 0.9);
+
+  /* 阴影层级 */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+
+  color: rgba(255, 255, 255, 0.85);
+
+  transition: all 0.25s ease;
+}
+
+/* hover 轻抬升 */
+.post-content blockquote:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.35);
+  border-left-color: rgba(56, 189, 248, 1);
+}
+
+/* 引用文字 */
+.post-content blockquote p {
+  margin: 0.6em 0;
+  line-height: 1.7;
+}
+
+/* 第一段稍微强调 */
+.post-content blockquote p:first-child {
+  font-weight: 500;
+}
+
+/* =========================
+   引用内链接优化
+   ========================= */
+.post-content blockquote a {
+  color: #7dd3fc;
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(125, 211, 252, 0.4);
+  transition: all 0.2s ease;
+}
+
+.post-content blockquote a:hover {
+  color: #38bdf8;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.9);
+}
+
+/* =========================
+   引用内列表优化
+   ========================= */
+.post-content blockquote ul,
+.post-content blockquote ol {
+  padding-left: 1.2em;
+  margin: 0.8em 0;
+}
+
+.post-content blockquote li {
+  margin: 0.3em 0;
+}
+
+/* =========================
+   引用“视觉标签”（伪元素）
+   ========================= */
+.post-content blockquote::before {
+  content: "“";
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  font-size: 2.5em;
+  color: rgba(125, 211, 252, 0.25);
+  font-family: serif;
+}
+
+.post-content blockquote::after {
+  content: "”";
+  position: absolute;
+  bottom: -18px;
+  right: 12px;
+  font-size: 2.5em;
+  color: rgba(125, 211, 252, 0.15);
+  font-family: serif;
+}
+
+/* =========================
+   深色模式适配（如果你有 data-theme）
+   ========================= */
+[data-theme="dark"] .post-content blockquote {
+  background: rgba(20, 20, 20, 0.45);
+  border: 1px solid rgba(255,255,255,0.06);
+}
