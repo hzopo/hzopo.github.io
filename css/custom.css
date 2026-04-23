@@ -1,7 +1,9 @@
 /* =========================
    Redefine Ultra Quote System
    ========================= */
-
+body {
+  outline: 5px solid red !important;
+}
 .post-content blockquote {
   position: relative;
   margin: 1.5em 0;
