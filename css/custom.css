@@ -5,7 +5,6 @@
 
   border-radius: 18px;
 
-  /* 🌫️ 浅色玻璃 */
   background: rgba(255, 255, 255, 0.55);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -13,8 +12,7 @@
   border: 1px solid rgba(0, 0, 0, 0.06);
 
   box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.08),
-    0 1px 0 rgba(255, 255, 255, 0.6) inset;
+    0 10px 30px rgba(0, 0, 0, 0.08);
 
   text-align: center;
 
@@ -24,24 +22,10 @@
   overflow: hidden;
 }
 
-/* 🌈 顶部氛围光条 */
-.music-pro::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 3px;
-  width: 100%;
-
-  background: linear-gradient(90deg, #A31F34, #ff7a9c, #A31F34);
-  opacity: 0.7;
-}
-
 /* 🎧 标题 */
 .music-title {
   font-size: 13px;
   font-weight: 500;
-  letter-spacing: 0.5px;
   opacity: 0.75;
   margin-bottom: 10px;
 }
@@ -59,32 +43,31 @@
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
-/* 🧊 底部提示 */
+/* 🧊 提示文字 */
 .music-tip {
   margin-top: 10px;
   font-size: 12px;
   opacity: 0.55;
 }
 
-/* ✨ hover 轻微浮动 */
+/* ✨ hover（轻微，不打扰） */
 .music-pro:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   box-shadow:
-    0 14px 36px rgba(0, 0, 0, 0.12),
-    0 1px 0 rgba(255, 255, 255, 0.6) inset;
+    0 14px 32px rgba(0, 0, 0, 0.12);
 }
 
 /* ================================
-   🌙 深色模式基础适配
+   🌙 深色模式（重点：统一风格）
    ================================ */
 
 [data-theme="dark"] .music-pro {
-  background: rgba(15, 23, 42, 0.65);
+  background: rgba(15, 23, 42, 0.55);
+
   border: 1px solid rgba(255, 255, 255, 0.08);
 
   box-shadow:
-    0 12px 32px rgba(0, 0, 0, 0.55),
-    0 1px 0 rgba(255, 255, 255, 0.05) inset;
+    0 12px 28px rgba(0, 0, 0, 0.55);
 }
 
 [data-theme="dark"] .music-title {
@@ -96,36 +79,6 @@
   color: #cbd5e1;
   opacity: 0.6;
 }
-
-/* ================================
-   🌙 深色模式遮罩（重点）
-   ================================ */
-
-[data-theme="dark"] .music-pro::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-
-  /* 轻微压暗 iframe 白底 */
-  background: linear-gradient(
-    to bottom,
-    rgba(15, 23, 42, 0.10),
-    rgba(15, 23, 42, 0.18)
-  );
-
-  border-radius: 18px;
-}
-
-/* 🌙 深色模式顶部微光强化 */
-[data-theme="dark"] .music-pro::before {
-  background: linear-gradient(90deg, #ff4d6d, #ff8fa3, #ff4d6d);
-  opacity: 0.75;
-}
-
-/* ================================
-   🎵 iframe 深色优化
-   ================================ */
 
 [data-theme="dark"] .music-frame {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
