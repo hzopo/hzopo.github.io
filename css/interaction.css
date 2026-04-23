@@ -1,0 +1,51 @@
+/* =========================
+   Der Clean Interaction System
+   ========================= */
+
+/* 1️⃣ 全局点击反馈（手机 + PC） */
+:active {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 2️⃣ 基础可交互元素统一手感 */
+a,
+button,
+.post-content blockquote,
+.post-content img,
+.card {
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  will-change: transform;
+}
+
+/* 3️⃣ hover 轻浮动（核心质感） */
+a:hover,
+button:hover,
+.post-content blockquote:hover,
+.card:hover {
+  transform: translateY(-2px);
+}
+
+/* 4️⃣ 图片 hover 微放大 */
+.post-content img {
+  cursor: pointer;
+}
+
+.post-content img:hover {
+  transform: scale(1.02);
+}
+
+/* 5️⃣ 点击压缩感（替代 ripple） */
+a:active,
+button:active {
+  transform: scale(0.97);
+}
+
+/* 6️⃣ 去掉手机点击高亮 */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 7️⃣ 统一滚动更顺滑 */
+html {
+  scroll-behavior: smooth;
+}
