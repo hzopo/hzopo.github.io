@@ -1,14 +1,15 @@
 /* =========================
-   ✍️ Handwritten Paper Blockquote
+   ✍️ Handwritten Paper Blockquote (Clean Version)
    ========================= */
 
 :root {
   --paper: #f7f1e3;
+  --paper-hover: #f8f3e7;
   --ink: #3f2f22;
   --ink-soft: rgba(63, 47, 34, 0.75);
 }
 
-/* ===== 纸张基础 ===== */
+/* ===== 基础结构 ===== */
 :is(.markdown-body, .post-content, .article-content) blockquote {
   position: relative;
   display: block;
@@ -24,47 +25,43 @@
 
   color: var(--ink-soft);
 
-  /* ✍️ 关键：手写体 */
+  /* 📖 清晰优先（去掉手写体） */
   font-family:
-    "Bradley Hand",
-    "Segoe Script",
-    "Comic Sans MS",
-    "STKaiti",
-    "Kaiti SC",
-    cursive;
+    "Noto Serif SC",
+    "Georgia",
+    "Times New Roman",
+    serif;
 
-  font-size: 1.1em;
+  font-size: 1.08em;
   line-height: 1.9;
 
-  /* ❌ 不要现代 UI */
   box-shadow: none;
   transform: none;
 }
 
-/* ===== 微纸纹理（很轻） ===== */
+/* ===== 纸张轻纹理 ===== */
 :is(.markdown-body, .post-content, .article-content) blockquote {
   background-image:
     repeating-linear-gradient(
       0deg,
-      rgba(0,0,0,0.02),
-      rgba(0,0,0,0.02) 1px,
+      rgba(0,0,0,0.015),
+      rgba(0,0,0,0.015) 1px,
       transparent 1px,
       transparent 4px
     );
 }
 
-/* ===== 手写“抖动感” ===== */
+/* ===== 内容微倾斜（轻手稿感） ===== */
 :is(.markdown-body, .post-content, .article-content) blockquote p {
   margin: 1em 0;
 
-  /* ✍️ 模拟人写字的不稳定 */
-  transform: rotate(-0.2deg);
-  letter-spacing: 0.2px;
+  transform: rotate(-0.15deg);
+  letter-spacing: 0.15px;
 
   color: var(--ink);
 }
 
-/* ===== 引号（像墨水压痕） ===== */
+/* ===== 引号装饰（墨迹感） ===== */
 :is(.markdown-body, .post-content, .article-content) blockquote::before {
   content: "“";
   position: absolute;
@@ -80,21 +77,37 @@
   pointer-events: none;
 }
 
-/* ===== hover：像纸被轻轻翻动 ===== */
+/* ===== hover（纸张变旧） ===== */
 :is(.markdown-body, .post-content, .article-content) blockquote:hover {
-  background: #f8f3e7;
+  background: var(--paper-hover);
   border-left-color: #b79c73;
 }
 
-/* ===== link：像手写下划线 ===== */
+/* ===== 链接（印刷感） ===== */
 :is(.markdown-body, .post-content, .article-content) blockquote a {
   color: inherit;
   text-decoration: underline;
   text-decoration-style: wavy;
   text-decoration-color: rgba(63, 47, 34, 0.25);
+  text-underline-offset: 3px;
 }
 
-/* ===== 深色模式（墨水稿纸） ===== */
+/* ===== 强调文字 ===== */
+:is(.markdown-body, .post-content, .article-content) blockquote strong {
+  font-weight: 600;
+  color: inherit;
+}
+
+/* ===== 列表 ===== */
+:is(.markdown-body, .post-content, .article-content) blockquote ul,
+:is(.markdown-body, .post-content, .article-content) blockquote ol {
+  margin: 1em 0;
+  padding-left: 1.5em;
+}
+
+/* =========================
+   🌙 Dark Mode
+   ========================= */
 [data-theme="dark"]
 :is(.markdown-body, .post-content, .article-content) blockquote {
   background: #1f1a14;
@@ -105,4 +118,10 @@
 [data-theme="dark"]
 :is(.markdown-body, .post-content, .article-content) blockquote::before {
   color: rgba(230, 210, 181, 0.12);
+}
+
+[data-theme="dark"]
+:is(.markdown-body, .post-content, .article-content) blockquote:hover {
+  background: #241e18;
+  border-left-color: #8a6f52;
 }
