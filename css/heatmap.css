@@ -1,0 +1,46 @@
+.hm-page {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* 防 Redefine 限宽 */
+.hm-wrapper {
+  width: 100%;
+  max-width: 900px;
+}
+
+/* 热力图 */
+#heatmap {
+  display: grid;
+  grid-template-columns: repeat(53, 10px);
+  gap: 3px;
+  overflow-x: auto;
+  padding: 10px 0;
+}
+
+/* 格子 */
+.cell {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: var(--color-card, #ebedf0);
+  transition: 0.2s;
+}
+
+/* 活跃度 */
+.cell.l2 { background: #9be9a8; }
+.cell.l3 { background: #40c463; }
+.cell.l4 { background: #216e39; }
+
+/* streak */
+#streak {
+  margin-top: 14px;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* 暗色适配 Redefine */
+html.dark .cell {
+  background: #2d333b;
+}
