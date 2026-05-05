@@ -1,52 +1,143 @@
 /* =========================
-   🌟 Blockquote System (Paper Neo + Readable Handwriting)
+   📚 Paper UI Design System v1
    ========================= */
 
-/* ===== 字体系统 ===== */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Caveat:wght@400;600&family=Noto+Serif+SC:wght@300;400;600&display=swap');
+/* =========================
+   🌐 字体系统（核心）
+   ========================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Caveat:wght@400;600&family=Noto+Serif+SC:wght@300;400;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap');
 
 :root {
-  --quote-radius: 14px;
-  --quote-padding: 2em 2.3em;
-  --quote-border-left: 4px;
 
-  --light-bg1: rgba(255, 252, 246, 0.98);
-  --light-bg2: rgba(248, 244, 236, 0.96);
-  --light-text: #4f3f33;
+  /* ===== Typography ===== */
+  --font-sans: "Inter", system-ui, -apple-system, Arial, sans-serif;
+  --font-serif: "Noto Serif SC", "PingFang SC", "Microsoft YaHei", serif;
+  --font-hand: "Caveat", cursive;
+  --font-mono: "JetBrains Mono", monospace;
 
-  --dark-bg1: rgba(35, 32, 30, 0.96);
-  --dark-bg2: rgba(45, 41, 38, 0.94);
-  --dark-text: #e9dcc8;
+  /* ===== Layout scale ===== */
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px 16px 18px 16px;
 
-  /* 字体系统 */
-  --font-en: "Inter", "Segoe UI", system-ui, Arial, sans-serif;
-  --font-zh: "Noto Serif SC", "PingFang SC", "Microsoft YaHei", serif;
-  --font-accent: "Caveat", cursive;
+  /* ===== Light theme ===== */
+  --bg-light: #fbf7f0;
+  --paper-light: #fffaf2;
+  --text-light: #4a3b2f;
+  --muted-light: rgba(74, 59, 47, 0.65);
+
+  /* ===== Dark theme ===== */
+  --bg-dark: #161413;
+  --paper-dark: #201d1b;
+  --text-dark: #e7dccb;
+  --muted-dark: rgba(231, 220, 203, 0.65);
+
+  /* ===== Shadow system ===== */
+  --shadow-sm: 0 6px 18px rgba(0,0,0,.08);
+  --shadow-md: 0 14px 35px rgba(0,0,0,.12);
+  --shadow-lg: 0 24px 70px rgba(0,0,0,.18);
 }
 
 /* =========================
-   🌟 基础 Reset
+   🌍 Base Layout
+   ========================= */
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-light);
+  color: var(--text-light);
+  line-height: 1.75;
+}
+
+/* =========================
+   🌙 Dark Mode System
+   ========================= */
+[data-theme="dark"] body {
+  background: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+/* =========================
+   📖 Typography System
+   ========================= */
+
+/* 标题 */
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  letter-spacing: 0.2px;
+}
+
+h1 { font-size: 2em; }
+h2 { font-size: 1.6em; }
+h3 { font-size: 1.3em; }
+
+/* 正文 */
+p {
+  font-family: var(--font-sans);
+}
+
+/* 中文优化 */
+p:lang(zh) {
+  font-family: var(--font-serif);
+  line-height: 1.9;
+}
+
+/* 英文优化 */
+p:lang(en) {
+  font-family: var(--font-sans);
+}
+
+/* =========================
+   📄 Paper Surface（卡片/内容容器）
+   ========================= */
+.post-content,
+.article-content,
+.markdown-body {
+
+  background: var(--paper-light);
+  border-radius: var(--radius-md);
+
+  padding: 2.2em;
+
+  box-shadow: var(--shadow-md);
+  transition: all .35s ease;
+}
+
+[data-theme="dark"]
+.post-content,
+[data-theme="dark"]
+.article-content,
+[data-theme="dark"]
+.markdown-body {
+  background: var(--paper-dark);
+  box-shadow: var(--shadow-lg);
+}
+
+/* =========================
+   📌 Blockquote System（统一设计）
    ========================= */
 :is(.markdown-body, .post-content, .article-content) blockquote {
-  all: unset;
-  display: block;
   position: relative;
-  padding: var(--quote-padding);
-  margin: 2.8em 0;
-  border-radius: var(--quote-radius);
-  border-left: var(--quote-border-left) solid transparent;
-  line-height: 1.85;
+  margin: 2.5em 0;
+  padding: 2em 2.3em;
 
-  font-family: var(--font-en);
-  font-size: 1.08em;
+  border-radius: var(--radius-lg);
+  border-left: 4px solid #caa98b;
 
-  transition: all .35s ease;
-  overflow: hidden;
+  font-family: var(--font-sans);
+  font-size: 1.05em;
+
+  transition: transform .35s ease, box-shadow .35s ease;
+
+  animation: breathe 7s ease-in-out infinite;
 }
 
-/* =========================
-   🧻 纸张质感（增强但不脏）
-   ========================= */
+/* 呼吸动画 */
+@keyframes breathe {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-1px); }
+}
+
+/* 📄 纸张纹理 */
 :is(.markdown-body, .post-content, .article-content) blockquote::after {
   content: "";
   position: absolute;
@@ -54,116 +145,72 @@
   pointer-events: none;
 
   background:
-    radial-gradient(circle at 20% 10%, rgba(255,255,255,.35), transparent 40%),
+    radial-gradient(circle at 20% 10%, rgba(255,255,255,.3), transparent 40%),
     radial-gradient(circle at 80% 90%, rgba(0,0,0,.04), transparent 45%);
 
-  opacity: .65;
+  opacity: .5;
   mix-blend-mode: soft-light;
 }
 
 /* =========================
-   ☀️ Light Mode
+   ☀️ Light Blockquote
    ========================= */
 body:not([data-theme="dark"])
 :is(.markdown-body, .post-content, .article-content) blockquote {
-  background:
-    linear-gradient(145deg, var(--light-bg1), var(--light-bg2));
-
-  border: 1px solid rgba(210, 200, 185, 0.55);
-  border-left-color: #caa98b;
-
-  color: var(--light-text);
-
-  box-shadow:
-    0 10px 25px rgba(60, 45, 30, 0.08),
-    0 2px 6px rgba(0,0,0,0.05),
-    inset 0 1px 0 rgba(255,255,255,.7);
-
-  backdrop-filter: blur(3px);
-}
-
-body:not([data-theme="dark"])
-:is(.markdown-body, .post-content, .article-content) blockquote:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 40px rgba(60, 45, 30, 0.12);
+  background: linear-gradient(145deg, #fffaf2, #f6f0e6);
+  box-shadow: var(--shadow-md);
+  color: var(--text-light);
 }
 
 /* =========================
-   🌙 Dark Mode
+   🌙 Dark Blockquote
    ========================= */
 [data-theme="dark"]
 :is(.markdown-body, .post-content, .article-content) blockquote {
-  background:
-    linear-gradient(145deg, var(--dark-bg1), var(--dark-bg2));
-
-  border: 1px solid rgba(120, 105, 95, 0.45);
-  border-left-color: #a08566;
-
-  color: var(--dark-text);
+  background: linear-gradient(145deg, #24211f, #1b1917);
+  border-left-color: #b08a66;
+  color: var(--text-dark);
 
   box-shadow:
-    0 12px 30px rgba(0,0,0,.45),
-    inset 0 1px 0 rgba(255,255,255,.05);
-
-  backdrop-filter: blur(3px);
-}
-
-[data-theme="dark"]
-:is(.markdown-body, .post-content, .article-content) blockquote:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 45px rgba(0,0,0,.55);
+    0 20px 60px rgba(0,0,0,.6),
+    inset 0 1px 0 rgba(255,255,255,.03);
 }
 
 /* =========================
-   📌 引号装饰（轻手写点缀）
+   📌 Quote mark（轻手写）
    ========================= */
 :is(.markdown-body, .post-content, .article-content) blockquote::before {
   content: "“";
   position: absolute;
-  top: .5em;
-  left: .7em;
+  top: .4em;
+  left: .6em;
+
+  font-family: var(--font-hand);
   font-size: 6em;
-  font-family: var(--font-accent);
   opacity: .12;
-  pointer-events: none;
-}
-
-body:not([data-theme="dark"])
-:is(.markdown-body, .post-content, .article-content) blockquote::before {
-  color: #caa98b;
-}
-
-[data-theme="dark"]
-:is(.markdown-body, .post-content, .article-content) blockquote::before {
-  color: #8b7355;
 }
 
 /* =========================
-   ✍️ 内容排版（中英分离优化）
+   🔗 Link System
    ========================= */
-:is(.markdown-body, .post-content, .article-content) blockquote p {
-  margin: 1em 0;
-  letter-spacing: 0.2px;
-}
-
-/* 中文更稳 */
-:is(.markdown-body, .post-content, .article-content) blockquote p:lang(zh) {
-  font-family: var(--font-zh);
-  line-height: 1.9;
-}
-
-/* 英文更清晰 */
-:is(.markdown-body, .post-content, .article-content) blockquote p:lang(en) {
-  font-family: var(--font-en);
-  line-height: 1.7;
-}
-
-/* =========================
-   🔗 links
-   ========================= */
-:is(.markdown-body, .post-content, .article-content) blockquote a {
+a {
   color: inherit;
   text-decoration: none;
+}
+
+/* =========================
+   🧱 Code System
+   ========================= */
+code {
+  font-family: var(--font-mono);
+  font-size: 0.95em;
+  padding: 0.2em 0.4em;
+  border-radius: 6px;
+  background: rgba(0,0,0,0.05);
+}
+
+[data-theme="dark"] code {
+  background: rgba(255,255,255,0.06);
 }
 
 /* =========================
