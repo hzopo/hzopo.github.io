@@ -1,8 +1,8 @@
-document.addEventListener("DOMContentLoaded", () => {
+window.initHeatmap = function () {
   const container = document.getElementById("heatmap");
   const streakEl = document.getElementById("streak");
 
-  if (!container) return;
+  if (!container || !window.blogPosts) return;
 
   const map = {};
 
@@ -10,15 +10,14 @@ document.addEventListener("DOMContentLoaded", () => {
     map[p.date] = (map[p.date] || 0) + 1;
   });
 
+  const today = new Date();
+
   function fmt(d) {
     return d.toISOString().split("T")[0];
   }
 
-  const today = new Date();
-
-  let currentStreak = 0;
-  let maxStreak = 0;
   let temp = 0;
+  let max = 0;
 
   for (let i = 364; i >= 0; i--) {
     const d = new Date();
@@ -38,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (count > 0) {
       temp++;
-      maxStreak = Math.max(maxStreak, temp);
+      max = Math.max(max, temp);
     } else {
       temp = 0;
     }
@@ -46,8 +45,10 @@ document.addEventListener("DOMContentLoaded", () => {
     container.appendChild(cell);
   }
 
-  streakEl.innerHTML = `
+  if (streakEl) {
+    streakEl.innerHTML = `
 🔥 Current streak: ${temp} days  
-🏆 Max streak: ${maxStreak} days
-`;
-});
+🏆 Max streak: ${max} days
+    `;
+  }
+};
