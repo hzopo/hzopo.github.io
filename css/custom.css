@@ -1,105 +1,108 @@
 /* =========================
-   📜 Paper Skeuomorphism Blockquote
+   ✍️ Handwritten Paper Blockquote
    ========================= */
 
 :root {
-  --paper-bg: #f6f1e6;
-  --paper-bg-2: #f3ecde;
-  --paper-border: #d8c7ad;
-  --ink: #4a3b2e;
-  --ink-soft: rgba(74, 59, 46, 0.75);
+  --paper: #f7f1e3;
+  --ink: #3f2f22;
+  --ink-soft: rgba(63, 47, 34, 0.75);
 }
 
-/* ===== Reset ===== */
+/* ===== 纸张基础 ===== */
 :is(.markdown-body, .post-content, .article-content) blockquote {
-  all: unset;
-  display: block;
   position: relative;
+  display: block;
 
-  padding: 2em 2.2em;
+  padding: 2.2em 2.4em;
   margin: 2.5em 0;
 
-  background: linear-gradient(135deg, var(--paper-bg), var(--paper-bg-2));
+  background: var(--paper);
 
-  border-left: 5px solid var(--paper-border);
-  border: 1px solid rgba(216, 199, 173, 0.6);
+  border-left: 4px solid #c8b08a;
+  border-top: 1px solid rgba(0,0,0,0.05);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
 
-  color: var(--ink);
-  font-style: italic;
-  line-height: 1.85;
+  color: var(--ink-soft);
 
-  /* 📜 关键：纸张“压感”，不是浮起来 */
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.6),
-    inset 0 -1px 0 rgba(0,0,0,0.03);
+  /* ✍️ 关键：手写体 */
+  font-family:
+    "Bradley Hand",
+    "Segoe Script",
+    "Comic Sans MS",
+    "STKaiti",
+    "Kaiti SC",
+    cursive;
 
-  /* 轻微纸张噪点 */
+  font-size: 1.1em;
+  line-height: 1.9;
+
+  /* ❌ 不要现代 UI */
+  box-shadow: none;
+  transform: none;
+}
+
+/* ===== 微纸纹理（很轻） ===== */
+:is(.markdown-body, .post-content, .article-content) blockquote {
   background-image:
     repeating-linear-gradient(
       0deg,
-      rgba(0,0,0,0.015),
-      rgba(0,0,0,0.015) 1px,
+      rgba(0,0,0,0.02),
+      rgba(0,0,0,0.02) 1px,
       transparent 1px,
-      transparent 3px
+      transparent 4px
     );
-
-  transition: none;
 }
 
-/* ===== hover：纸张只会“变旧”，不会飞 ===== */
-:is(.markdown-body, .post-content, .article-content) blockquote:hover {
-  background: linear-gradient(135deg, #f7f2e8, #f2ead9);
-  border-color: #cdb899;
-}
-
-/* ===== 引号（像印刷油墨压痕） ===== */
-:is(.markdown-body, .post-content, .article-content) blockquote::before {
-  content: '"';
-  position: absolute;
-  top: .6em;
-  left: .7em;
-
-  font-size: 5.5em;
-  font-family: "Times New Roman", serif;
-
-  color: rgba(74, 59, 46, 0.12);
-
-  pointer-events: none;
-  line-height: 1;
-}
-
-/* ===== 内容 ===== */
+/* ===== 手写“抖动感” ===== */
 :is(.markdown-body, .post-content, .article-content) blockquote p {
   margin: 1em 0;
-  font-size: 1.08em;
-  color: var(--ink-soft);
+
+  /* ✍️ 模拟人写字的不稳定 */
+  transform: rotate(-0.2deg);
+  letter-spacing: 0.2px;
+
+  color: var(--ink);
 }
 
-/* ===== link：像印刷下划线（弱） ===== */
+/* ===== 引号（像墨水压痕） ===== */
+:is(.markdown-body, .post-content, .article-content) blockquote::before {
+  content: "“";
+  position: absolute;
+
+  top: 0.4em;
+  left: 0.6em;
+
+  font-size: 6em;
+  font-family: serif;
+
+  color: rgba(63, 47, 34, 0.12);
+
+  pointer-events: none;
+}
+
+/* ===== hover：像纸被轻轻翻动 ===== */
+:is(.markdown-body, .post-content, .article-content) blockquote:hover {
+  background: #f8f3e7;
+  border-left-color: #b79c73;
+}
+
+/* ===== link：像手写下划线 ===== */
 :is(.markdown-body, .post-content, .article-content) blockquote a {
   color: inherit;
   text-decoration: underline;
-  text-decoration-color: rgba(74, 59, 46, 0.25);
-  text-underline-offset: 3px;
+  text-decoration-style: wavy;
+  text-decoration-color: rgba(63, 47, 34, 0.25);
 }
 
-/* ===== dark mode（纸变旧羊皮纸） ===== */
+/* ===== 深色模式（墨水稿纸） ===== */
 [data-theme="dark"]
 :is(.markdown-body, .post-content, .article-content) blockquote {
-  background: linear-gradient(135deg, #2a241d, #332b22);
-  border-color: #5a4a3a;
+  background: #1f1a14;
   color: #e6d2b5;
-
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.05);
+  border-left-color: #6d5a44;
 }
 
 [data-theme="dark"]
 :is(.markdown-body, .post-content, .article-content) blockquote::before {
   color: rgba(230, 210, 181, 0.12);
-}
-
-/* ===== 强制去掉任何现代 hover 动画 ===== */
-:is(.markdown-body, .post-content, .article-content) blockquote:hover {
-  transform: none !important;
 }
