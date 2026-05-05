@@ -1,8 +1,9 @@
-window.addEventListener("load", function () {
+function renderHeatmap() {
 
-  console.log("heatmap init");
+  if (window.__heatmap_loaded) return;
+  window.__heatmap_loaded = true;
 
-  if (!window.blogPosts || !Array.isArray(window.blogPosts)) {
+  if (!window.blogPosts) {
     console.warn("blogPosts missing");
     return;
   }
@@ -12,11 +13,7 @@ window.addEventListener("load", function () {
   const weekbar = document.getElementById("weekbar");
 
   if (!container || !streakEl || !weekbar) {
-    console.warn("DOM missing", {
-      container,
-      streakEl,
-      weekbar
-    });
+    console.warn("DOM missing");
     return;
   }
 
@@ -30,6 +27,9 @@ window.addEventListener("load", function () {
 
   let temp = 0;
   let max = 0;
+
+  container.innerHTML = "";
+  weekbar.innerHTML = "";
 
   for (let i = 364; i >= 0; i--) {
     const d = new Date();
@@ -71,5 +71,9 @@ window.addEventListener("load", function () {
 
     weekbar.appendChild(bar);
   }
+}
 
-});
+/* 三重保险 */
+document.addEventListener("DOMContentLoaded", renderHeatmap);
+window.addEventListener("load", renderHeatmap);
+document.addEventListener("pjax:complete", renderHeatmap);
