@@ -1,79 +1,26 @@
-function renderHeatmap() {
+const fs = require('fs');
+const path = require('path');
 
-  if (window.__heatmap_loaded) return;
-  window.__heatmap_loaded = true;
+hexo.extend.generator.register('heatmap', function () {
 
-  if (!window.blogPosts) {
-    console.warn("blogPosts missing");
-    return;
-  }
-
-  const container = document.getElementById("heatmap");
-  const streakEl = document.getElementById("streak");
-  const weekbar = document.getElementById("weekbar");
-
-  if (!container || !streakEl || !weekbar) {
-    console.warn("DOM missing");
-    return;
-  }
+  const posts = hexo.locals.get('posts').toArray();
 
   const map = {};
-  window.blogPosts.forEach(p => {
-    map[p.date] = (map[p.date] || 0) + 1;
+
+  posts.forEach(post => {
+    const date = new Date(post.date).toISOString().slice(0, 10);
+
+    if (!map[date]) map[date] = 0;
+    map[date] += 1;
   });
 
-  const fmt = d => d.toISOString().split("T")[0];
-  const today = new Date();
+  const dir = path.join(hexo.public_dir, 'data');
+  const file = path.join(dir, 'heatmap.json');
 
-  let temp = 0;
-  let max = 0;
-
-  container.innerHTML = "";
-  weekbar.innerHTML = "";
-
-  for (let i = 364; i >= 0; i--) {
-    const d = new Date();
-    d.setDate(today.getDate() - i);
-
-    const key = fmt(d);
-    const count = map[key] || 0;
-
-    const cell = document.createElement("div");
-    cell.className = "cell";
-
-    if (count >= 3) cell.classList.add("l4");
-    else if (count === 2) cell.classList.add("l3");
-    else if (count === 1) cell.classList.add("l1");
-
-    if (count > 0) {
-      temp++;
-      max = Math.max(max, temp);
-    } else {
-      temp = 0;
-    }
-
-    container.appendChild(cell);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
   }
 
-  streakEl.innerHTML =
-    "🔥 Current streak: " + temp + " days  🏆 Max streak: " + max + " days";
+  fs.writeFileSync(file, JSON.stringify(map));
 
-  for (let i = 6; i >= 0; i--) {
-    const d = new Date();
-    d.setDate(today.getDate() - i);
-
-    const key = fmt(d);
-    const count = map[key] || 0;
-
-    const bar = document.createElement("div");
-    bar.className = "week-day";
-    bar.style.height = (10 + count * 10) + "px";
-
-    weekbar.appendChild(bar);
-  }
-}
-
-/* 三重保险 */
-document.addEventListener("DOMContentLoaded", renderHeatmap);
-window.addEventListener("load", renderHeatmap);
-document.addEventListener("pjax:complete", renderHeatmap);
+});
