@@ -21,6 +21,5 @@ hexo.extend.generator.register('heatmap', function () {
     fs.mkdirSync(dir, { recursive: true });
   }
 
-  fs.writeFileSync(file, JSON.stringify(map));
-
+  fs.writeFileSync(file, JSON.stringify(map, null, 2));
 });

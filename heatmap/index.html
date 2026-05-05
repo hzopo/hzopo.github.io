@@ -517,7 +517,101 @@
 		<h1>heatmap</h1>
 		
 
-		
+		<!-- Heatmap Container -->
+<div id="heatmap"></div>
+
+<!-- Library -->
+<link rel="stylesheet" href="https://unpkg.com/cal-heatmap/dist/cal-heatmap.css">
+<script src="https://unpkg.com/cal-heatmap/dist/cal-heatmap.min.js"></script>
+
+<style>
+/* 🌙 GitHub 风格暗色容器 */
+#heatmap {
+  padding: 12px;
+  background: #0d1117;
+  border-radius: 12px;
+  overflow-x: auto;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+/* 方块更柔和 */
+.cal-heatmap-container rect {
+  stroke: rgba(255,255,255,0.06);
+  transition: all 0.15s ease;
+}
+
+.cal-heatmap-container rect:hover {
+  stroke: rgba(255,255,255,0.3);
+  transform: scale(1.1);
+}
+</style>
+
+<script>
+fetch('/data/heatmap.json')
+  .then(res => res.json())
+  .then(data => {
+
+    // 转换数据
+    const formatted = Object.entries(data).map(([date, value]) => ({
+      date,
+      value
+    }));
+
+    const cal = new CalHeatmap();
+
+    cal.paint({
+      itemSelector: "#heatmap",
+
+      range: 12,
+
+      domain: {
+        type: "month",
+        gutter: 10
+      },
+
+      subDomain: {
+        type: "day",
+        width: 10,
+        height: 10,
+        radius: 2
+      },
+
+      data: {
+        source: formatted,
+        x: "date",
+        y: "value"
+      },
+
+      // 🎨 GitHub 风格配色
+      scale: {
+        color: {
+          type: "linear",
+          range: [
+            "#161b22",
+            "#0e4429",
+            "#006d32",
+            "#26a641",
+            "#39d353"
+          ]
+        }
+      },
+
+      // 🟡 hover 提示（升级重点）
+      itemSelector: "#heatmap",
+      date: {
+        start: new Date()
+      },
+
+      tooltip: {
+        enabled: true,
+        text: function (date, value) {
+          return `${date.toISOString().slice(0,10)} : ${value || 0} posts`;
+        }
+      }
+    });
+
+  });
+</script>
 	</div>
 
 	<div class="page-template-comments">
