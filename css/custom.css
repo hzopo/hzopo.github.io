@@ -401,3 +401,99 @@ body:not([data-theme="dark"]) .article-content blockquote a:hover {
       ) !important;
   }
 }
+
+
+/* =========================
+   🔥 全局链接下划线彻底清除
+   ========================= */
+
+a {
+  text-decoration: none !important;
+}
+
+/* 防止任何区域的底部线 */
+a,
+a:hover,
+a:visited,
+a:active {
+  text-decoration: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+/* =========================
+   🔥 Redefine / 主题伪元素下划线清除
+   （关键：红色线就是这个）
+   ========================= */
+
+/* 通用导航结构 */
+.nav a::after,
+.navbar a::after,
+.menu a::after,
+.dropdown a::after,
+.header a::after,
+.site-nav a::after,
+#nav a::after,
+#menu a::after {
+  content: none !important;
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* hover 状态伪元素 */
+.nav a:hover::after,
+.navbar a:hover::after,
+.menu a:hover::after,
+.dropdown a:hover::after,
+.header a:hover::after,
+.site-nav a:hover::after,
+#nav a:hover::after,
+#menu a:hover::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* =========================
+   🔥 防止主题用 box-shadow 模拟下划线
+   ========================= */
+
+.nav a,
+.navbar a,
+.menu a,
+.dropdown a,
+.header a,
+.site-nav a {
+  box-shadow: none !important;
+  background-image: none !important;
+}
+
+/* =========================
+   🔥 当前/激活状态（防红线残留）
+   ========================= */
+
+.nav .active::after,
+.navbar .active::after,
+.menu .active::after,
+.dropdown .active::after,
+.header .active::after,
+.site-nav .active::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* 🚨 全站伪元素下划线清除 */
+a::after,
+a::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* 🚨 所有可能的导航状态线 */
+.nav *::after,
+.menu *::after,
+.navbar *::after,
+.header *::after {
+  display: none !important;
+  content: none !important;
+}
