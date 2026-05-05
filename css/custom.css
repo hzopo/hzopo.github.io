@@ -261,15 +261,13 @@ body:not([data-theme="dark"]) .article-content blockquote::before {
 .article-content blockquote a {
   color: inherit !important;
   text-decoration: none !important;
-  border-bottom: 1px dashed rgba(212, 185, 160, 0.6) !important;
-  padding-bottom: 1px !important;
+  padding-bottom: 0 !important;
   transition: all 0.2s ease !important;
 }
 
 body:not([data-theme="dark"]) .markdown-body blockquote a:hover,
 body:not([data-theme="dark"]) .post-content blockquote a:hover,
 body:not([data-theme="dark"]) .article-content blockquote a:hover {
-  border-bottom: 1px solid #c9a787 !important;
   color: #8b7355 !important;
   text-shadow: 0 0 3px rgba(201, 167, 135, 0.2) !important;
 }
@@ -277,7 +275,6 @@ body:not([data-theme="dark"]) .article-content blockquote a:hover {
 [data-theme="dark"] .markdown-body blockquote a:hover,
 [data-theme="dark"] .post-content blockquote a:hover,
 [data-theme="dark"] .article-content blockquote a:hover {
-  border-bottom: 1px solid #a0785a !important;
   color: #d4b9a0 !important;
   text-shadow: 0 0 3px rgba(160, 120, 90, 0.3) !important;
 }
