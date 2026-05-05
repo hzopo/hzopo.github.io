@@ -96,7 +96,7 @@
     
     <title>
         
-            Blog Activity | Dergod Blog
+            heatmap | Dergod Blog
         
     </title>
 
@@ -119,6 +119,11 @@
             
                 
                     <link rel="stylesheet" href="/css/custom.css">
+                
+    
+            
+                
+                    <link rel="stylesheet" href="/css/heatmap.css">
                 
     
 
@@ -514,24 +519,60 @@
 
 	<div class="page-template-content markdown-body">
 		
-		<h1>Blog Activity</h1>
+		<h1>heatmap</h1>
 		
 
-		<div class="hm-page">
-  <div class="hm-wrapper">
-    <div id="heatmap"></div>
+		<div id="heatmap"></div>
+<div id="streak"></div>
+<div class="dashboard">
+
+  <div class="dash-header">
+    <h2>Blog Activity</h2>
     <div id="streak"></div>
   </div>
+
+  <div id="heatmap"></div>
+
+  <div class="dash-bottom">
+    <div id="weekbar"></div>
+  </div>
+
 </div>
-
 <script>
-window.blogPosts = [
+window.addEventListener("load", function () {
+  // 防止重复加载
+  if (window.__heatmap_loaded) return;
+  window.__heatmap_loaded = true;
 
-];
-</script>
+<p>  const container &#x3D; document.getElementById(“heatmap”);<br>  const streakEl &#x3D; document.getElementById(“streak”);</p>
+<p>  if (!container) {<br>    console.error(“heatmap container missing”);<br>    return;<br>  }</p>
+<p>  if (!window.blogPosts) {<br>    console.error(“blogPosts missing”);<br>    return;<br>  }</p>
+<p>  const map &#x3D; {};<br>  window.blogPosts.forEach(p &#x3D;&gt; {<br>    map[p.date] &#x3D; (map[p.date] || 0) + 1;<br>  });</p>
+<p>  const fmt &#x3D; d &#x3D;&gt; d.toISOString().split(“T”)[0];<br>  const today &#x3D; new Date();</p>
+<p>  let streak &#x3D; 0;<br>  let max &#x3D; 0;<br>  let temp &#x3D; 0;</p>
+<p>  for (let i &#x3D; 364; i &gt;&#x3D; 0; i–) {<br>    const d &#x3D; new Date();<br>    d.setDate(today.getDate() - i);</p>
+<pre><code>const key = fmt(d);
+const count = map[key] || 0;
 
-<script src="/js/heatmap.js"></script>
-<link rel="stylesheet" href="/css/heatmap.css">
+const cell = document.createElement(&quot;div&quot;);
+cell.className = &quot;cell&quot;;
+
+if (count &gt;= 3) cell.style.background = &quot;#216e39&quot;;
+else if (count === 2) cell.style.background = &quot;#40c463&quot;;
+else if (count === 1) cell.style.background = &quot;#9be9a8&quot;;
+
+if (count &gt; 0) &#123;
+  temp++;
+  max = Math.max(max, temp);
+&#125; else &#123;
+  temp = 0;
+&#125;
+
+container.appendChild(cell);
+</code></pre>
+<p>  }</p>
+<p>  streakEl.innerHTML &#x3D; <code>🔥 Current streak: $&#123;temp&#125; days   🏆 Max streak: $&#123;max&#125; days  </code>;<br>});<br></script></p>
+
 	</div>
 
 	<div class="page-template-comments">
@@ -635,6 +676,12 @@ window.blogPosts = [
 
                     
                         <script data-swup-reload-script src="/js/interaction.js"></script>
+                    
+        
+                
+
+                    
+                        <script data-swup-reload-script src="/js/heatmap.js"></script>
                     
         
         

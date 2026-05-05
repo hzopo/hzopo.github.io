@@ -1,20 +1,18 @@
-window.initHeatmap = function () {
-  const container = document.getElementById("heatmap");
-  const streakEl = document.getElementById("streak");
+window.addEventListener("load", function () {
 
-  if (!container || !window.blogPosts) return;
+  if (!window.blogPosts) return;
 
   const map = {};
-
   window.blogPosts.forEach(p => {
     map[p.date] = (map[p.date] || 0) + 1;
   });
 
-  const today = new Date();
+  const container = document.getElementById("heatmap");
+  const streakEl = document.getElementById("streak");
+  const weekbar = document.getElementById("weekbar");
 
-  function fmt(d) {
-    return d.toISOString().split("T")[0];
-  }
+  const fmt = d => d.toISOString().split("T")[0];
+  const today = new Date();
 
   let temp = 0;
   let max = 0;
@@ -31,9 +29,7 @@ window.initHeatmap = function () {
 
     if (count >= 3) cell.classList.add("l4");
     else if (count === 2) cell.classList.add("l3");
-    else if (count === 1) cell.classList.add("l2");
-
-    cell.title = `${key} · ${count} posts`;
+    else if (count === 1) cell.classList.add("l1");
 
     if (count > 0) {
       temp++;
@@ -45,10 +41,20 @@ window.initHeatmap = function () {
     container.appendChild(cell);
   }
 
-  if (streakEl) {
-    streakEl.innerHTML = `
-🔥 Current streak: ${temp} days  
-🏆 Max streak: ${max} days
-    `;
+  streakEl.innerHTML =
+    "🔥 Current streak: " + temp + " days  🏆 Max streak: " + max + " days";
+
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date();
+    d.setDate(today.getDate() - i);
+    const key = fmt(d);
+    const count = map[key] || 0;
+
+    const bar = document.createElement("div");
+    bar.className = "week-day";
+    bar.style.height = (10 + count * 10) + "px";
+
+    weekbar.appendChild(bar);
   }
-};
+
+});
