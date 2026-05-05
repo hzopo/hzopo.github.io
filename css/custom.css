@@ -1,9 +1,9 @@
 /* =========================
-   🌟 Blockquote System (Paper Neo+Handwriting)
+   🌟 Blockquote System (Paper Neo + Readable Handwriting)
    ========================= */
 
-/* ===== 字体系统（新增） ===== */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Caveat:wght@400;600&family=Noto+Serif+SC:wght@300;400;600&display=swap');
+/* ===== 字体系统 ===== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Caveat:wght@400;600&family=Noto+Serif+SC:wght@300;400;600&display=swap');
 
 :root {
   --quote-radius: 14px;
@@ -17,9 +17,16 @@
   --dark-bg1: rgba(35, 32, 30, 0.96);
   --dark-bg2: rgba(45, 41, 38, 0.94);
   --dark-text: #e9dcc8;
+
+  /* 字体系统 */
+  --font-en: "Inter", "Segoe UI", system-ui, Arial, sans-serif;
+  --font-zh: "Noto Serif SC", "PingFang SC", "Microsoft YaHei", serif;
+  --font-accent: "Caveat", cursive;
 }
 
-/* ===== 基础 Reset ===== */
+/* =========================
+   🌟 基础 Reset
+   ========================= */
 :is(.markdown-body, .post-content, .article-content) blockquote {
   all: unset;
   display: block;
@@ -30,16 +37,15 @@
   border-left: var(--quote-border-left) solid transparent;
   line-height: 1.85;
 
-  font-family: "Caveat", "Noto Serif SC", "Inter", system-ui, sans-serif;
-  font-size: 1.12em;
+  font-family: var(--font-en);
+  font-size: 1.08em;
 
   transition: all .35s ease;
-
   overflow: hidden;
 }
 
 /* =========================
-   🧻 纸张质感增强（核心升级）
+   🧻 纸张质感（增强但不脏）
    ========================= */
 :is(.markdown-body, .post-content, .article-content) blockquote::after {
   content: "";
@@ -47,12 +53,11 @@
   inset: 0;
   pointer-events: none;
 
-  /* 轻微纸纹噪点 + 光晕 */
   background:
     radial-gradient(circle at 20% 10%, rgba(255,255,255,.35), transparent 40%),
     radial-gradient(circle at 80% 90%, rgba(0,0,0,.04), transparent 45%);
 
-  opacity: .7;
+  opacity: .65;
   mix-blend-mode: soft-light;
 }
 
@@ -77,12 +82,10 @@ body:not([data-theme="dark"])
   backdrop-filter: blur(3px);
 }
 
-/* hover（更“浮纸感”） */
 body:not([data-theme="dark"])
 :is(.markdown-body, .post-content, .article-content) blockquote:hover {
   transform: translateY(-4px);
-  box-shadow:
-    0 18px 40px rgba(60, 45, 30, 0.12);
+  box-shadow: 0 18px 40px rgba(60, 45, 30, 0.12);
 }
 
 /* =========================
@@ -112,7 +115,7 @@ body:not([data-theme="dark"])
 }
 
 /* =========================
-   📌 引号装饰优化
+   📌 引号装饰（轻手写点缀）
    ========================= */
 :is(.markdown-body, .post-content, .article-content) blockquote::before {
   content: "“";
@@ -120,7 +123,7 @@ body:not([data-theme="dark"])
   top: .5em;
   left: .7em;
   font-size: 6em;
-  font-family: Georgia, serif;
+  font-family: var(--font-accent);
   opacity: .12;
   pointer-events: none;
 }
@@ -136,22 +139,23 @@ body:not([data-theme="dark"])
 }
 
 /* =========================
-   ✍️ 内容层（中英优化排版）
+   ✍️ 内容排版（中英分离优化）
    ========================= */
 :is(.markdown-body, .post-content, .article-content) blockquote p {
   margin: 1em 0;
-  font-size: 1.08em;
   letter-spacing: 0.2px;
 }
 
-/* 中文更稳一点 */
+/* 中文更稳 */
 :is(.markdown-body, .post-content, .article-content) blockquote p:lang(zh) {
-  font-family: "Noto Serif SC", serif;
+  font-family: var(--font-zh);
+  line-height: 1.9;
 }
 
-/* 英文更手写一点 */
+/* 英文更清晰 */
 :is(.markdown-body, .post-content, .article-content) blockquote p:lang(en) {
-  font-family: "Caveat", "Inter", sans-serif;
+  font-family: var(--font-en);
+  line-height: 1.7;
 }
 
 /* =========================
@@ -163,7 +167,7 @@ body:not([data-theme="dark"])
 }
 
 /* =========================
-   🚨 全站下划线清理（保持原样不动）
+   🚨 全站下划线清理（保持原样不变）
    ========================= */
 a::after,
 a::before {
