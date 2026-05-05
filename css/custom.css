@@ -1,45 +1,76 @@
 /* =========================
-   ✍️ Handwritten Paper Blockquote (Clean Version)
+   📜 Paper Skeuomorphism System (Full)
    ========================= */
 
-:root {
-  --paper: #f7f1e3;
-  --paper-hover: #f8f3e7;
-  --ink: #3f2f22;
-  --ink-soft: rgba(63, 47, 34, 0.75);
+/* =========================
+   🪵 1. Background Layer (Desk Paper)
+   ========================= */
+body {
+  background: radial-gradient(circle at top, #f3ecde, #e9dfcc);
+  color: #2f241b;
+  font-family: "Noto Serif SC", "Georgia", serif;
+  font-weight: 400;
 }
 
-/* ===== 基础结构 ===== */
+/* =========================
+   📄 2. Main Paper Layer (Page Card)
+   ========================= */
+.main-container,
+.content,
+.page,
+.post {
+  background: #f7f1e3;
+
+  border: 1px solid rgba(0,0,0,0.06);
+
+  box-shadow:
+    0 12px 35px rgba(0,0,0,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+
+  border-radius: 10px;
+
+  padding: 2.5em;
+}
+
+/* =========================
+   ✍️ 3. Typography System
+   ========================= */
+p {
+  font-weight: 450;
+  line-height: 1.85;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* =========================
+   🧾 4. Blockquote (Inner Paper Layer)
+   ========================= */
 :is(.markdown-body, .post-content, .article-content) blockquote {
   position: relative;
-  display: block;
 
-  padding: 2.2em 2.4em;
+  background: #f5efe2;
+
+  border-left: 5px solid #c8b08a;
+  border-radius: 8px;
+
+  padding: 2em 2.2em;
   margin: 2.5em 0;
 
-  background: var(--paper);
+  color: #3f2f22;
 
-  border-left: 4px solid #c8b08a;
-  border-top: 1px solid rgba(0,0,0,0.05);
-  border-bottom: 1px solid rgba(0,0,0,0.05);
+  font-family: "Noto Serif SC", "Georgia", serif;
+  font-size: 1.12em;
+  line-height: 1.95;
 
-  color: var(--ink-soft);
-
-  /* 📖 清晰优先（去掉手写体） */
-  font-family:
-    "Noto Serif SC",
-    "Georgia",
-    "Times New Roman",
-    serif;
-
-  font-size: 1.08em;
-  line-height: 1.9;
-
-  box-shadow: none;
-  transform: none;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.6),
+    0 2px 8px rgba(0,0,0,0.05);
 }
 
-/* ===== 纸张轻纹理 ===== */
+/* 微纸纹理 */
 :is(.markdown-body, .post-content, .article-content) blockquote {
   background-image:
     repeating-linear-gradient(
@@ -51,21 +82,19 @@
     );
 }
 
-/* ===== 内容微倾斜（轻手稿感） ===== */
+/* =========================
+   🧾 5. Blockquote content tweak
+   ========================= */
 :is(.markdown-body, .post-content, .article-content) blockquote p {
   margin: 1em 0;
-
-  transform: rotate(-0.15deg);
-  letter-spacing: 0.15px;
-
-  color: var(--ink);
+  color: #3f2f22;
+  transform: rotate(-0.12deg);
 }
 
-/* ===== 引号装饰（墨迹感） ===== */
+/* 引号（墨迹感） */
 :is(.markdown-body, .post-content, .article-content) blockquote::before {
   content: "“";
   position: absolute;
-
   top: 0.4em;
   left: 0.6em;
 
@@ -77,42 +106,38 @@
   pointer-events: none;
 }
 
-/* ===== hover（纸张变旧） ===== */
-:is(.markdown-body, .post-content, .article-content) blockquote:hover {
-  background: var(--paper-hover);
-  border-left-color: #b79c73;
-}
-
-/* ===== 链接（印刷感） ===== */
-:is(.markdown-body, .post-content, .article-content) blockquote a {
+/* =========================
+   🔗 Links (paper ink style)
+   ========================= */
+a {
   color: inherit;
   text-decoration: underline;
-  text-decoration-style: wavy;
   text-decoration-color: rgba(63, 47, 34, 0.25);
   text-underline-offset: 3px;
 }
 
-/* ===== 强调文字 ===== */
-:is(.markdown-body, .post-content, .article-content) blockquote strong {
-  font-weight: 600;
-  color: inherit;
-}
-
-/* ===== 列表 ===== */
-:is(.markdown-body, .post-content, .article-content) blockquote ul,
-:is(.markdown-body, .post-content, .article-content) blockquote ol {
-  margin: 1em 0;
-  padding-left: 1.5em;
-}
-
 /* =========================
-   🌙 Dark Mode
+   🌙 Dark Mode (Leather Paper)
    ========================= */
+[data-theme="dark"] body {
+  background: #15110d;
+  color: #e6d2b5;
+}
+
+[data-theme="dark"] .main-container,
+[data-theme="dark"] .content,
+[data-theme="dark"] .page,
+[data-theme="dark"] .post {
+  background: #1f1a14;
+
+  box-shadow: 0 12px 35px rgba(0,0,0,0.45);
+}
+
 [data-theme="dark"]
 :is(.markdown-body, .post-content, .article-content) blockquote {
-  background: #1f1a14;
+  background: #241e18;
   color: #e6d2b5;
-  border-left-color: #6d5a44;
+  border-left-color: #7a624a;
 }
 
 [data-theme="dark"]
@@ -120,8 +145,28 @@
   color: rgba(230, 210, 181, 0.12);
 }
 
-[data-theme="dark"]
-:is(.markdown-body, .post-content, .article-content) blockquote:hover {
-  background: #241e18;
-  border-left-color: #8a6f52;
+body {
+  font-weight: 400;
+}
+
+p {
+  font-weight: 450;
+  line-height: 1.85;
+  letter-spacing: 0.1px;
+}
+
+/* 🚨 全站伪元素下划线清除 */
+a::after,
+a::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* 🚨 所有可能的导航状态线 */
+.nav *::after,
+.menu *::after,
+.navbar *::after,
+.header *::after {
+  display: none !important;
+  content: none !important;
 }
