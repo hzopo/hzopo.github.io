@@ -1,172 +1,135 @@
 /* =========================
-   📜 Paper Skeuomorphism System (Full)
+   🌟 Blockquote System (Optimized)
    ========================= */
 
-/* =========================
-   🪵 1. Background Layer (Desk Paper)
-   ========================= */
-body {
-  background: radial-gradient(circle at top, #f3ecde, #e9dfcc);
-  color: #2f241b;
-  font-family: "Noto Serif SC", "Georgia", serif;
-  font-weight: 400;
+/* ===== 主题变量 ===== */
+:root {
+  --quote-radius: 12px;
+  --quote-padding: 2em 2.2em;
+  --quote-border-left: 4px;
+
+  --light-bg1: rgba(253, 251, 247, 0.98);
+  --light-bg2: rgba(250, 247, 242, 0.95);
+  --light-text: #5a4639;
+
+  --dark-bg1: rgba(40, 36, 32, 0.95);
+  --dark-bg2: rgba(50, 44, 38, 0.92);
+  --dark-text: #e8d8c0;
 }
 
-/* =========================
-   📄 2. Main Paper Layer (Page Card)
-   ========================= */
-.main-container,
-.content,
-.page,
-.post {
-  background: #f7f1e3;
-
-  border: 1px solid rgba(0,0,0,0.06);
-
-  box-shadow:
-    0 12px 35px rgba(0,0,0,0.08),
-    inset 0 1px 0 rgba(255,255,255,0.6);
-
-  border-radius: 10px;
-
-  padding: 2.5em;
-}
-
-/* =========================
-   ✍️ 3. Typography System
-   ========================= */
-p {
-  font-weight: 450;
-  line-height: 1.85;
-}
-
-h1, h2, h3, h4 {
-  font-weight: 600;
-  letter-spacing: 0.3px;
-}
-
-/* =========================
-   🧾 4. Blockquote (Inner Paper Layer)
-   ========================= */
+/* ===== 基础 Reset ===== */
 :is(.markdown-body, .post-content, .article-content) blockquote {
+  all: unset;
+  display: block;
   position: relative;
-
-  background: #f5efe2;
-
-  border-left: 5px solid #c8b08a;
-  border-radius: 8px;
-
-  padding: 2em 2.2em;
+  padding: var(--quote-padding);
   margin: 2.5em 0;
-
-  color: #3f2f22;
-
-  font-family: "Noto Serif SC", "Georgia", serif;
-  font-size: 1.12em;
-  line-height: 1.95;
-
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.6),
-    0 2px 8px rgba(0,0,0,0.05);
-}
-
-/* 微纸纹理 */
-:is(.markdown-body, .post-content, .article-content) blockquote {
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      rgba(0,0,0,0.015),
-      rgba(0,0,0,0.015) 1px,
-      transparent 1px,
-      transparent 4px
-    );
+  border-radius: var(--quote-radius);
+  border-left: var(--quote-border-left) solid transparent;
+  line-height: 1.8;
+  font-style: italic;
+  transition: all .35s ease;
 }
 
 /* =========================
-   🧾 5. Blockquote content tweak
+   ☀️ Light Mode
    ========================= */
-:is(.markdown-body, .post-content, .article-content) blockquote p {
-  margin: 1em 0;
-  color: #3f2f22;
-  transform: rotate(-0.12deg);
+body:not([data-theme="dark"])
+:is(.markdown-body, .post-content, .article-content) blockquote {
+  background:
+    linear-gradient(135deg, var(--light-bg1), var(--light-bg2));
+  border: 1px solid rgba(220, 209, 194, 0.6);
+  border-left-color: #d4b9a0;
+  color: var(--light-text);
+
+  box-shadow:
+    0 4px 20px rgba(220, 209, 194, 0.15),
+    inset 0 1px 0 rgba(255,255,255,.6);
+
+  backdrop-filter: blur(2px);
 }
 
-/* 引号（墨迹感） */
+/* hover */
+body:not([data-theme="dark"])
+:is(.markdown-body, .post-content, .article-content) blockquote:hover {
+  transform: translateY(-3px) scale(1.005);
+  border-left-color: #c9a787;
+  box-shadow:
+    0 8px 30px rgba(220, 209, 194, 0.25);
+}
+
+/* =========================
+   🌙 Dark Mode
+   ========================= */
+[data-theme="dark"]
+:is(.markdown-body, .post-content, .article-content) blockquote {
+  background:
+    linear-gradient(135deg, var(--dark-bg1), var(--dark-bg2));
+
+  border: 1px solid rgba(100, 90, 80, 0.5);
+  border-left-color: #8b7355;
+
+  color: var(--dark-text);
+
+  box-shadow:
+    0 4px 20px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.08);
+
+  backdrop-filter: blur(2px);
+}
+
+[data-theme="dark"]
+:is(.markdown-body, .post-content, .article-content) blockquote:hover {
+  transform: translateY(-3px) scale(1.005);
+  border-left-color: #a0785a;
+  box-shadow: 0 8px 30px rgba(0,0,0,.45);
+}
+
+/* =========================
+   📌 引号装饰（合并版）
+   ========================= */
 :is(.markdown-body, .post-content, .article-content) blockquote::before {
-  content: "“";
+  content: '"';
   position: absolute;
-  top: 0.4em;
-  left: 0.6em;
-
-  font-size: 6em;
-  font-family: serif;
-
-  color: rgba(63, 47, 34, 0.12);
-
+  top: .8em;
+  left: .8em;
+  font-size: 5em;
+  font-family: Georgia, serif;
+  opacity: .15;
   pointer-events: none;
 }
 
-/* =========================
-   🔗 Links (paper ink style)
-   ========================= */
-a {
-  color: inherit;
-  text-decoration: underline;
-  text-decoration-color: rgba(63, 47, 34, 0.25);
-  text-underline-offset: 3px;
-}
-
-/* =========================
-   🌙 Dark Mode (Leather Paper)
-   ========================= */
-[data-theme="dark"] body {
-  background: #15110d;
-  color: #e6d2b5;
-}
-
-[data-theme="dark"] .main-container,
-[data-theme="dark"] .content,
-[data-theme="dark"] .page,
-[data-theme="dark"] .post {
-  background: #1f1a14;
-
-  box-shadow: 0 12px 35px rgba(0,0,0,0.45);
-}
-
-[data-theme="dark"]
-:is(.markdown-body, .post-content, .article-content) blockquote {
-  background: #241e18;
-  color: #e6d2b5;
-  border-left-color: #7a624a;
+body:not([data-theme="dark"])
+:is(.markdown-body, .post-content, .article-content) blockquote::before {
+  color: #d4b9a0;
 }
 
 [data-theme="dark"]
 :is(.markdown-body, .post-content, .article-content) blockquote::before {
-  color: rgba(230, 210, 181, 0.12);
+  color: #8b7355;
 }
 
-body {
-  font-weight: 400;
+/* =========================
+   ✍️ 内容层
+   ========================= */
+:is(.markdown-body, .post-content, .article-content) blockquote p {
+  margin: 1em 0;
+  font-size: 1.1em;
 }
 
-p {
-  font-weight: 450;
-  line-height: 1.85;
-  letter-spacing: 0.1px;
+/* =========================
+   🔗 links
+   ========================= */
+:is(.markdown-body, .post-content, .article-content) blockquote a {
+  color: inherit;
+  text-decoration: none;
 }
 
-/* 🚨 全站伪元素下划线清除 */
+/* =========================
+   🚨 全站下划线清理
+   ========================= */
 a::after,
 a::before {
   content: none !important;
   display: none !important;
-}
-
-/* 🚨 所有可能的导航状态线 */
-.nav *::after,
-.menu *::after,
-.navbar *::after,
-.header *::after {
-  display: none !important;
-  content: none !important;
 }
