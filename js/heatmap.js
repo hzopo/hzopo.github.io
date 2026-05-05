@@ -1,15 +1,29 @@
 window.addEventListener("load", function () {
 
-  if (!window.blogPosts) return;
+  console.log("heatmap init");
+
+  if (!window.blogPosts || !Array.isArray(window.blogPosts)) {
+    console.warn("blogPosts missing");
+    return;
+  }
+
+  const container = document.getElementById("heatmap");
+  const streakEl = document.getElementById("streak");
+  const weekbar = document.getElementById("weekbar");
+
+  if (!container || !streakEl || !weekbar) {
+    console.warn("DOM missing", {
+      container,
+      streakEl,
+      weekbar
+    });
+    return;
+  }
 
   const map = {};
   window.blogPosts.forEach(p => {
     map[p.date] = (map[p.date] || 0) + 1;
   });
-
-  const container = document.getElementById("heatmap");
-  const streakEl = document.getElementById("streak");
-  const weekbar = document.getElementById("weekbar");
 
   const fmt = d => d.toISOString().split("T")[0];
   const today = new Date();
@@ -47,6 +61,7 @@ window.addEventListener("load", function () {
   for (let i = 6; i >= 0; i--) {
     const d = new Date();
     d.setDate(today.getDate() - i);
+
     const key = fmt(d);
     const count = map[key] || 0;
 

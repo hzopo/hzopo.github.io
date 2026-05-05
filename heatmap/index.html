@@ -522,9 +522,7 @@
 		<h1>heatmap</h1>
 		
 
-		<div id="heatmap"></div>
-<div id="streak"></div>
-<div class="dashboard">
+		<div class="dashboard">
 
   <div class="dash-header">
     <h2>Blog Activity</h2>
@@ -538,41 +536,75 @@
   </div>
 
 </div>
+
 <script>
+window.__heatmap_loaded = false;
+
 window.addEventListener("load", function () {
-  // 防止重复加载
   if (window.__heatmap_loaded) return;
   window.__heatmap_loaded = true;
 
-<p>  const container &#x3D; document.getElementById(“heatmap”);<br>  const streakEl &#x3D; document.getElementById(“streak”);</p>
-<p>  if (!container) {<br>    console.error(“heatmap container missing”);<br>    return;<br>  }</p>
-<p>  if (!window.blogPosts) {<br>    console.error(“blogPosts missing”);<br>    return;<br>  }</p>
-<p>  const map &#x3D; {};<br>  window.blogPosts.forEach(p &#x3D;&gt; {<br>    map[p.date] &#x3D; (map[p.date] || 0) + 1;<br>  });</p>
-<p>  const fmt &#x3D; d &#x3D;&gt; d.toISOString().split(“T”)[0];<br>  const today &#x3D; new Date();</p>
-<p>  let streak &#x3D; 0;<br>  let max &#x3D; 0;<br>  let temp &#x3D; 0;</p>
-<p>  for (let i &#x3D; 364; i &gt;&#x3D; 0; i–) {<br>    const d &#x3D; new Date();<br>    d.setDate(today.getDate() - i);</p>
-<pre><code>const key = fmt(d);
-const count = map[key] || 0;
+  const container = document.getElementById("heatmap");
+  const streakEl = document.getElementById("streak");
+  const weekbar = document.getElementById("weekbar");
 
-const cell = document.createElement(&quot;div&quot;);
-cell.className = &quot;cell&quot;;
+  if (!container || !window.blogPosts) return;
 
-if (count &gt;= 3) cell.style.background = &quot;#216e39&quot;;
-else if (count === 2) cell.style.background = &quot;#40c463&quot;;
-else if (count === 1) cell.style.background = &quot;#9be9a8&quot;;
+  const map = {};
 
-if (count &gt; 0) &#123;
-  temp++;
-  max = Math.max(max, temp);
-&#125; else &#123;
-  temp = 0;
-&#125;
+  window.blogPosts.forEach(p => {
+    map[p.date] = (map[p.date] || 0) + 1;
+  });
 
-container.appendChild(cell);
-</code></pre>
-<p>  }</p>
-<p>  streakEl.innerHTML &#x3D; <code>🔥 Current streak: $&#123;temp&#125; days   🏆 Max streak: $&#123;max&#125; days  </code>;<br>});<br></script></p>
+  const fmt = d => d.toISOString().split("T")[0];
+  const today = new Date();
 
+  let temp = 0;
+  let max = 0;
+
+  for (let i = 364; i >= 0; i--) {
+    const d = new Date();
+    d.setDate(today.getDate() - i);
+
+    const key = fmt(d);
+    const count = map[key] || 0;
+
+    const cell = document.createElement("div");
+    cell.className = "cell";
+
+    if (count >= 3) cell.classList.add("l4");
+    else if (count === 2) cell.classList.add("l3");
+    else if (count === 1) cell.classList.add("l1");
+
+    if (count > 0) {
+      temp++;
+      max = Math.max(max, temp);
+    } else {
+      temp = 0;
+    }
+
+    container.appendChild(cell);
+  }
+
+  streakEl.innerHTML =
+    "🔥 Current streak: " + temp + " days  🏆 Max streak: " + max + " days";
+
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date();
+    d.setDate(today.getDate() - i);
+
+    const key = fmt(d);
+    const count = map[key] || 0;
+
+    const bar = document.createElement("div");
+    bar.className = "week-day";
+    bar.style.height = (10 + count * 10) + "px";
+
+    weekbar.appendChild(bar);
+  }
+
+});
+</script>
 	</div>
 
 	<div class="page-template-comments">
