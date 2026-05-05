@@ -1,135 +1,105 @@
 /* =========================
-   🌟 Blockquote System (Optimized)
+   📜 Paper Skeuomorphism Blockquote
    ========================= */
 
-/* ===== 主题变量 ===== */
 :root {
-  --quote-radius: 12px;
-  --quote-padding: 2em 2.2em;
-  --quote-border-left: 4px;
-
-  --light-bg1: rgba(253, 251, 247, 0.98);
-  --light-bg2: rgba(250, 247, 242, 0.95);
-  --light-text: #5a4639;
-
-  --dark-bg1: rgba(40, 36, 32, 0.95);
-  --dark-bg2: rgba(50, 44, 38, 0.92);
-  --dark-text: #e8d8c0;
+  --paper-bg: #f6f1e6;
+  --paper-bg-2: #f3ecde;
+  --paper-border: #d8c7ad;
+  --ink: #4a3b2e;
+  --ink-soft: rgba(74, 59, 46, 0.75);
 }
 
-/* ===== 基础 Reset ===== */
+/* ===== Reset ===== */
 :is(.markdown-body, .post-content, .article-content) blockquote {
   all: unset;
   display: block;
   position: relative;
-  padding: var(--quote-padding);
+
+  padding: 2em 2.2em;
   margin: 2.5em 0;
-  border-radius: var(--quote-radius);
-  border-left: var(--quote-border-left) solid transparent;
-  line-height: 1.8;
+
+  background: linear-gradient(135deg, var(--paper-bg), var(--paper-bg-2));
+
+  border-left: 5px solid var(--paper-border);
+  border: 1px solid rgba(216, 199, 173, 0.6);
+
+  color: var(--ink);
   font-style: italic;
-  transition: all .35s ease;
-}
+  line-height: 1.85;
 
-/* =========================
-   ☀️ Light Mode
-   ========================= */
-body:not([data-theme="dark"])
-:is(.markdown-body, .post-content, .article-content) blockquote {
-  background:
-    linear-gradient(135deg, var(--light-bg1), var(--light-bg2));
-  border: 1px solid rgba(220, 209, 194, 0.6);
-  border-left-color: #d4b9a0;
-  color: var(--light-text);
-
+  /* 📜 关键：纸张“压感”，不是浮起来 */
   box-shadow:
-    0 4px 20px rgba(220, 209, 194, 0.15),
-    inset 0 1px 0 rgba(255,255,255,.6);
+    inset 0 1px 0 rgba(255,255,255,0.6),
+    inset 0 -1px 0 rgba(0,0,0,0.03);
 
-  backdrop-filter: blur(2px);
+  /* 轻微纸张噪点 */
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(0,0,0,0.015),
+      rgba(0,0,0,0.015) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+
+  transition: none;
 }
 
-/* hover */
-body:not([data-theme="dark"])
+/* ===== hover：纸张只会“变旧”，不会飞 ===== */
 :is(.markdown-body, .post-content, .article-content) blockquote:hover {
-  transform: translateY(-3px) scale(1.005);
-  border-left-color: #c9a787;
-  box-shadow:
-    0 8px 30px rgba(220, 209, 194, 0.25);
+  background: linear-gradient(135deg, #f7f2e8, #f2ead9);
+  border-color: #cdb899;
 }
 
-/* =========================
-   🌙 Dark Mode
-   ========================= */
-[data-theme="dark"]
-:is(.markdown-body, .post-content, .article-content) blockquote {
-  background:
-    linear-gradient(135deg, var(--dark-bg1), var(--dark-bg2));
-
-  border: 1px solid rgba(100, 90, 80, 0.5);
-  border-left-color: #8b7355;
-
-  color: var(--dark-text);
-
-  box-shadow:
-    0 4px 20px rgba(0,0,0,.35),
-    inset 0 1px 0 rgba(255,255,255,.08);
-
-  backdrop-filter: blur(2px);
-}
-
-[data-theme="dark"]
-:is(.markdown-body, .post-content, .article-content) blockquote:hover {
-  transform: translateY(-3px) scale(1.005);
-  border-left-color: #a0785a;
-  box-shadow: 0 8px 30px rgba(0,0,0,.45);
-}
-
-/* =========================
-   📌 引号装饰（合并版）
-   ========================= */
+/* ===== 引号（像印刷油墨压痕） ===== */
 :is(.markdown-body, .post-content, .article-content) blockquote::before {
   content: '"';
   position: absolute;
-  top: .8em;
-  left: .8em;
-  font-size: 5em;
-  font-family: Georgia, serif;
-  opacity: .15;
+  top: .6em;
+  left: .7em;
+
+  font-size: 5.5em;
+  font-family: "Times New Roman", serif;
+
+  color: rgba(74, 59, 46, 0.12);
+
   pointer-events: none;
+  line-height: 1;
 }
 
-body:not([data-theme="dark"])
-:is(.markdown-body, .post-content, .article-content) blockquote::before {
-  color: #d4b9a0;
+/* ===== 内容 ===== */
+:is(.markdown-body, .post-content, .article-content) blockquote p {
+  margin: 1em 0;
+  font-size: 1.08em;
+  color: var(--ink-soft);
+}
+
+/* ===== link：像印刷下划线（弱） ===== */
+:is(.markdown-body, .post-content, .article-content) blockquote a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(74, 59, 46, 0.25);
+  text-underline-offset: 3px;
+}
+
+/* ===== dark mode（纸变旧羊皮纸） ===== */
+[data-theme="dark"]
+:is(.markdown-body, .post-content, .article-content) blockquote {
+  background: linear-gradient(135deg, #2a241d, #332b22);
+  border-color: #5a4a3a;
+  color: #e6d2b5;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
 [data-theme="dark"]
 :is(.markdown-body, .post-content, .article-content) blockquote::before {
-  color: #8b7355;
+  color: rgba(230, 210, 181, 0.12);
 }
 
-/* =========================
-   ✍️ 内容层
-   ========================= */
-:is(.markdown-body, .post-content, .article-content) blockquote p {
-  margin: 1em 0;
-  font-size: 1.1em;
-}
-
-/* =========================
-   🔗 links
-   ========================= */
-:is(.markdown-body, .post-content, .article-content) blockquote a {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* =========================
-   🚨 全站下划线清理
-   ========================= */
-a::after,
-a::before {
-  content: none !important;
-  display: none !important;
+/* ===== 强制去掉任何现代 hover 动画 ===== */
+:is(.markdown-body, .post-content, .article-content) blockquote:hover {
+  transform: none !important;
 }
