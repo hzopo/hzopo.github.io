@@ -6,7 +6,7 @@
     <description>welcome to my blog!</description>
     <language>zh-CN</language>
     <copyright>All rights reserved 2026, dergod</copyright>
-    <lastBuildDate>Tue, 30 Jun 2026 00:40:43 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 30 Jun 2026 01:01:20 GMT</lastBuildDate>
     <generator>Hexo</generator>
     <atom:link href="http://hzopo.github.io/rss.xml" rel="self" type="application/rss+xml"/>
     <item>
@@ -15,8 +15,8 @@
       <description>Here's something encrypted, password is required to continue reading.</description>
       <author>dergod</author>
       <category domain="http://hzopo.github.io/categories/life/">life</category>
-      <category domain="http://hzopo.github.io/tags/life/">life</category>
       <category domain="http://hzopo.github.io/tags/social/">social</category>
+      <category domain="http://hzopo.github.io/tags/life/">life</category>
       <category domain="http://hzopo.github.io/tags/human/">human</category>
       <category domain="http://hzopo.github.io/tags/earth/">earth</category>
       <pubDate>Mon, 29 Jun 2026 10:14:36 GMT</pubDate>
@@ -34,8 +34,8 @@
       </description>
       <author>dergod</author>
       <category domain="http://hzopo.github.io/categories/life/">life</category>
-      <category domain="http://hzopo.github.io/tags/life/">life</category>
       <category domain="http://hzopo.github.io/tags/social/">social</category>
+      <category domain="http://hzopo.github.io/tags/life/">life</category>
       <category domain="http://hzopo.github.io/tags/human/">human</category>
       <pubDate>Mon, 22 Jun 2026 11:48:07 GMT</pubDate>
       <content:encoded>
@@ -65,8 +65,8 @@
       </description>
       <author>dergod</author>
       <category domain="http://hzopo.github.io/categories/life/">life</category>
-      <category domain="http://hzopo.github.io/tags/life/">life</category>
       <category domain="http://hzopo.github.io/tags/social/">social</category>
+      <category domain="http://hzopo.github.io/tags/life/">life</category>
       <category domain="http://hzopo.github.io/tags/economy/">economy</category>
       <category domain="http://hzopo.github.io/tags/tech/">tech</category>
       <pubDate>Sat, 16 May 2026 01:32:38 GMT</pubDate>
